@@ -266,8 +266,13 @@
             display: inline-flex; /* Use inline-flex for pseudo-element to center content */
             justify-content: center;
             align-items: center;
-            width: 20px; /* Give it a fixed width */
-            height: 20px; /* Give it a fixed height */
+            /* Removed fixed width and height */
+            /* Added padding for visual spacing around the icon */
+            padding-right: 5px;
+            box-sizing: content-box;
+        }
+        #instructions-screen ul li span {
+            flex-grow: 1; /* Allow the text content to grow and wrap */
         }
         #instructions-screen .btn {
             margin-top: 20px;
@@ -1205,12 +1210,25 @@
                 font-size: 2em;
                 margin-bottom: 25px;
             }
-            .screen p, #instructions-screen ul li {
+            .screen p {
                 font-size: 1em;
             }
+            /* Instructions screen specific adjustments for mobile */
+            #instructions-screen ul {
+                padding-left: 0; /* Ensure no extra padding pushes content */
+                margin-left: 0;
+            }
+            #instructions-screen ul li {
+                font-size: 1em; /* Adjust font size for readability */
+                margin-bottom: 10px; /* Reduce space between list items */
+                align-items: flex-start; /* Keep icon and text aligned at the top */
+                line-height: 1.5; /* Adjust line height for better spacing */
+            }
             #instructions-screen ul li::before {
-                font-size: 1.1em;
-                top: 0px;
+                font-size: 1.1em; /* Adjust icon size */
+                margin-right: 8px; /* Adjust space between icon and text */
+                /* Removed fixed width and height */
+                padding-right: 3px; /* Adjust padding for mobile */
             }
             #question-container {
                 font-size: 1.3em;
@@ -1446,16 +1464,16 @@
         <section id="instructions-screen" class="screen hidden">
             <h2>Instructions</h2>
             <ul>
-                <li>The test consists of <strong>100 Multiple Choice Questions (MCQs)</strong> across various sections.</li>
-                <li>You have <strong>60 minutes (1 hour)</strong> to complete the test. The timer will start once you begin.</li>
-                <li>Each question has only <strong>one correct answer</strong>.</li>
-                <li>You can navigate between questions using the "Previous" and "Next" buttons, or by using the question palette at the bottom.</li>
-                <li>You can "Flag" questions for review and come back to them later.</li>
-                <li>Your progress (answered, not answered, flagged) will be visible in the question palette.</li>
-                <li>A calculator and a scratchpad are available as floating tools for your convenience.</li>
-                <li>Once you click "Submit Test," you will not be able to change your answers.</li>
-                <li>Ensure you have a stable internet connection.</li>
-                <li>Good luck!</li>
+                <li><span>The test consists of <strong>100 Multiple Choice Questions (MCQs)</strong> across various sections.</span></li>
+                <li><span>You have <strong>60 minutes (1 hour)</strong> to complete the test. The timer will start once you begin.</span></li>
+                <li><span>Each question has only <strong>one correct answer</strong>.</span></li>
+                <li><span>You can navigate between questions using the "Previous" and "Next" buttons, or by using the question palette at the bottom.</span></li>
+                <li><span>You can "Flag" questions for review and come back to them later.</span></li>
+                <li><span>Your progress (answered, not answered, flagged) will be visible in the question palette.</span></li>
+                <li><span>A calculator and a scratchpad are available as floating tools for your convenience.</span></li>
+                <li><span>Once you click "Submit Test," you will not be able to change your answers.</span></li>
+                <li><span>Ensure you have a stable internet connection.</span></li>
+                <li><span>Good luck!</span></li>
             </ul>
             <button class="btn btn-primary" id="begin-test-button">Begin Test</button>
         </section>
@@ -1474,6 +1492,7 @@
                     <h3>Reading Passage:</h3>
                     <p id="reading-passage-content"></p>
                 </div>
+                <p id="question-section" style="font-size: 1.1em; color: var(--primary-color); margin-bottom: 10px; font-weight: 600;"></p>
                 <p id="question-container"></p>
                 <div class="options-container" id="options-container">
                     </div>
@@ -1536,8 +1555,7 @@
     </main>
 
     <footer class="page-footer">
-        <p>&copy; 2025 Graduation Mock Test Series. All rights reserved. Crafted with dedication by <a href="https://mock-test-hub.netlify.app" target="_blank" rel="noopener noreferrer">Mock Test Hub</a></p>
-    </footer>
+<p>&copy; 2025 Graduation Mock Test Series. All rights reserved. Crafted with dedication by <a href="https://mock-test-hub.netlify.app" target="_blank" rel="noopener noreferrer">Mock Test Hub</a></p>     </footer>
 
     <div id="confirm-submit-modal" class="modal hidden">
         <div class="modal-content">
@@ -1601,22 +1619,22 @@
                 <button class="button clear-btn">AC</button>
                 <button class="button plus-minus">±</button>
                 <button class="button percentage">%</button>
-                <button class="button operator">÷</button>
+                <button class="button operator" data-operator="/">÷</button>
                 <button class="button">7</button>
                 <button class="button">8</button>
                 <button class="button">9</button>
-                <button class="button operator">×</button>
+                <button class="button operator" data-operator="*">×</button>
                 <button class="button">4</button>
                 <button class="button">5</button>
                 <button class="button">6</button>
-                <button class="button operator">-</button>
+                <button class="button operator" data-operator="-">-</button>
                 <button class="button">1</button>
                 <button class="button">2</button>
                 <button class="button">3</button>
-                <button class="button operator">+</button>
+                <button class="button operator" data-operator="+">+</button>
                 <button class="button zero">0</button>
                 <button class="button decimal">.</button>
-                <button class="button operator equal">=</button>
+                <button class="button operator equal" data-operator="=">=</button>
             </div>
         </div>
     </div>
@@ -1638,52 +1656,62 @@
   // English - Reading Comprehension (10 Questions) for Q1-Q10
   {
     question: "What is the main topic of the passage?",
+    section: "English - Reading Comprehension",
     passage: "Climate change refers to long-term alterations in temperature, precipitation, wind patterns, and other elements of the Earth's climate system. Human activities, especially the burning of fossil fuels and deforestation, have accelerated these changes. The consequences of climate change include rising sea levels, more frequent extreme weather events, and biodiversity loss. Global efforts like the Paris Agreement aim to mitigate these effects through emission reductions and sustainable development.",
     options: ["Weather forecasting", "Climate change", "Earth's oceans", "Fossil fuels"],
     correctAnswer: 1
   },
   {
     question: "According to the passage, which of the following is NOT an element of Earth's climate system mentioned in relation to long-term alterations?",
+    section: "English - Reading Comprehension",
     options: ["Temperature", "Wind patterns", "Ocean currents", "Precipitation"],
     correctAnswer: 2
   },
   {
     question: "What are the two main human activities mentioned that accelerate climate change?",
+    section: "English - Reading Comprehension",
     options: ["Reforestation and recycling", "Burning fossil fuels and deforestation", "Solar panel installation and wind energy", "Urbanization and agriculture"],
     correctAnswer: 1
   },
   {
     question: "Which of these is a consequence of climate change mentioned in the passage?",
+    section: "English - Reading Comprehension",
     options: ["Decreasing sea levels", "Less frequent extreme weather", "Biodiversity gain", "Rising sea levels"],
     correctAnswer: 3
   },
   {
     question: "What global effort is mentioned as aiming to mitigate climate change effects?",
+    section: "English - Reading Comprehension",
     options: ["Kyoto Protocol", "Paris Agreement", "Geneva Convention", "Stockholm Accord"],
     correctAnswer: 1
   },
   {
     question: "How do global efforts aim to mitigate climate change effects?",
+    section: "English - Reading Comprehension",
     options: ["By increasing deforestation", "Through emission reductions and sustainable development", "By promoting fossil fuel use", "By ignoring weather patterns"],
     correctAnswer: 1
   },
   {
     question: "The term 'mitigate' in the passage most closely means:",
+    section: "English - Reading Comprehension",
     options: ["Intensify", "Worsen", "Lessen or reduce", "Create"],
     correctAnswer: 2
   },
   {
     question: "Biodiversity loss' refers to:",
+    section: "English - Reading Comprehension",
     options: ["An increase in different species", "The reduction or disappearance of various species", "A change in weather patterns", "The growth of new forests"],
     correctAnswer: 1
   },
   {
     question: "What are 'fossil fuels' primarily responsible for accelerating, as per the passage?",
+    section: "English - Reading Comprehension",
     options: ["Ocean currents", "Climate system alterations", "Animal migration", "Cloud formation"],
     correctAnswer: 1
   },
   {
     question: "The passage suggests that climate change is a ________ issue.",
+    section: "English - Reading Comprehension",
     options: ["Temporary", "Local", "Long-term", "Minor"],
     correctAnswer: 2
   },
@@ -1691,51 +1719,61 @@
   // English - Vocabulary (10 Questions)
   {
     question: "Synonym of 'Rapid':",
+    section: "English - Vocabulary",
     options: ["Slow", "Quick", "Lazy", "Gentle"],
     correctAnswer: 1
   },
   {
     question: "Antonym of 'Generous':",
+    section: "English - Vocabulary",
     options: ["Kind", "Rich", "Mean", "Honest"],
     correctAnswer: 2
   },
   {
     question: "Correct spelling:",
+    section: "English - Vocabulary",
     options: ["Receeve", "Receive", "Recieve", "Recive"],
     correctAnswer: 1
   },
   {
     question: "Synonym of 'Abandon':",
+    section: "English - Vocabulary",
     options: ["Leave", "Enter", "Stay", "Continue"],
     correctAnswer: 0
   },
   {
     question: "Antonym of 'Harsh':",
+    section: "English - Vocabulary",
     options: ["Cold", "Rough", "Gentle", "Bitter"],
     correctAnswer: 2
   },
   {
     question: "Correct spelling:",
+    section: "English - Vocabulary",
     options: ["Accomodation", "Accommodation", "Acommodation", "Accomadation"],
     correctAnswer: 1
   },
   {
     question: "Synonym of 'Brief':",
+    section: "English - Vocabulary",
     options: ["Long", "Short", "Detailed", "Slow"],
     correctAnswer: 1
   },
   {
     question: "Antonym of 'Permanent':",
+    section: "English - Vocabulary",
     options: ["Lasting", "Constant", "Temporary", "Firm"],
     correctAnswer: 2
   },
   {
     question: "Correct spelling:",
+    section: "English - Vocabulary",
     options: ["Enviroment", "Environment", "Envirenment", "Environmant"],
     correctAnswer: 1
   },
   {
     question: "Antonym of 'Success':",
+    section: "English - Vocabulary",
     options: ["Win", "Victory", "Triumph", "Failure"],
     correctAnswer: 3
   },
@@ -1743,51 +1781,61 @@
   // English - Grammar (10 Questions)
   {
     question: "Identify the error: 'He go to school every day.'",
+    section: "English - Grammar",
     options: ["He", "Go", "School", "Day"],
     correctAnswer: 1
   },
   {
     question: "Fill in the blank: 'He is fond ___ music.'",
+    section: "English - Grammar",
     options: ["with", "for", "of", "at"],
     correctAnswer: 2
   },
   {
     question: "Choose the correct sentence:",
+    section: "English - Grammar",
     options: ["She do her homework regularly.", "She does her homework regularly.", "She did her homework regularly.", "She done her homework regularly."],
     correctAnswer: 1
   },
   {
     question: "Identify the error: 'They has arrived late.'",
+    section: "English - Grammar",
     options: ["They", "Has", "Arrived", "Late"],
     correctAnswer: 1
   },
   {
     question: "Fill in the blank: 'The cat jumped ___ the table.'",
+    section: "English - Grammar",
     options: ["in", "on", "for", "by"],
     correctAnswer: 1
   },
   {
     question: "Choose the correct sentence:",
+    section: "English - Grammar",
     options: ["I have went to market.", "I gone to market.", "I have gone to market.", "I go to market."],
     correctAnswer: 2
   },
   {
     question: "Identify the error: 'She playing guitar now.'",
+    section: "English - Grammar",
     options: ["She", "Playing", "Guitar", "Now"],
     correctAnswer: 1
   },
   {
     question: "Fill in the blank: 'Ali is good ___ mathematics.'",
+    section: "English - Grammar",
     options: ["at", "in", "on", "for"],
     correctAnswer: 0
   },
   {
     question: "Choose the correct sentence:",
+    section: "English - Grammar",
     options: ["They is eating dinner.", "They are eating dinner.", "They eating dinner.", "They eat dinner now."],
     correctAnswer: 1
   },
   {
     question: "Identify the error: 'My brother don't like coffee.'",
+    section: "English - Grammar",
     options: ["My", "Brother", "Don’t", "Like"],
     correctAnswer: 2
   },
@@ -1795,51 +1843,61 @@
   // English - Vocabulary: Spell Checking (10 Questions)
   {
     question: "Choose the correct spelling:",
+    section: "English - Spell Checking",
     options: ["Accomodate", "Acommodate", "Accommodate", "Acomodate"],
     correctAnswer: 2
   },
   {
     question: "Choose the correct spelling:",
+    section: "English - Spell Checking",
     options: ["Definately", "Definitely", "Defanitely", "Definitley"],
     correctAnswer: 1
   },
   {
     question: "Choose the correct spelling:",
+    section: "English - Spell Checking",
     options: ["Neccessary", "Necessary", "Necesary", "Neccesary"],
     correctAnswer: 1
   },
   {
     question: "Choose the correct spelling:",
+    section: "English - Spell Checking",
     options: ["Tommorrow", "Tomorow", "Tomorrow", "Tommorow"],
     correctAnswer: 2
   },
   {
     question: "Choose the correct spelling:",
+    section: "English - Spell Checking",
     options: ["Goverment", "Goverrnment", "Government", "Govenment"],
     correctAnswer: 2
   },
   {
     question: "Choose the correct spelling:",
+    section: "English - Spell Checking",
     options: ["Begining", "Beginning", "Beggining", "Begininng"],
     correctAnswer: 1
   },
   {
     question: "Choose the correct spelling:",
+    section: "English - Spell Checking",
     options: ["Febuary", "February", "Februery", "Febraury"],
     correctAnswer: 1
   },
   {
     question: "Choose the correct spelling:",
+    section: "English - Spell Checking",
     options: ["Occurence", "Occurance", "Occurrence", "Ocurrence"],
     correctAnswer: 2
   },
   {
     question: "Choose the correct spelling:",
+    section: "English - Spell Checking",
     options: ["Seperate", "Separate", "Seperete", "Seperat"],
     correctAnswer: 1
   },
   {
     question: "Choose the correct spelling:",
+    section: "English - Spell Checking",
     options: ["Reccommend", "Recommend", "Recomend", "Recommmend"],
     correctAnswer: 1
   },
@@ -1847,101 +1905,121 @@
   // Mathematics (20 Questions)
   {
     question: "12 + 15 =",
+    section: "Mathematics",
     options: ["25", "27", "28", "29"],
     correctAnswer: 1
   },
   {
     question: "5 × 6 =",
+    section: "Mathematics",
     options: ["25", "30", "36", "35"],
     correctAnswer: 1
   },
   {
     question: "100 ÷ 4 =",
+    section: "Mathematics",
     options: ["20", "24", "25", "26"],
     correctAnswer: 2
   },
   {
     question: "45 – 18 =",
+    section: "Mathematics",
     options: ["26", "27", "28", "29"],
     correctAnswer: 1
   },
   {
     question: "10% of 200 is:",
+    section: "Mathematics",
     options: ["10", "20", "30", "40"],
     correctAnswer: 1
   },
   {
     question: "If a pen costs Rs. 20, how many can you buy with Rs. 100?",
+    section: "Mathematics",
     options: ["3", "4", "5", "6"],
     correctAnswer: 2
   },
   {
     question: "Solve: 7 × 8 =",
+    section: "Mathematics",
     options: ["54", "56", "58", "60"],
     correctAnswer: 1
   },
   {
     question: "If Ali is 5 years older than Sara and Sara is 15, what is Ali’s age?",
+    section: "Mathematics",
     options: ["20", "21", "22", "19"],
     correctAnswer: 0
   },
   {
     question: "Find the missing number: 2, 4, __, 8",
+    section: "Mathematics",
     options: ["5", "6", "7", "9"],
     correctAnswer: 1
   },
   {
     question: "90 ÷ 9 =",
+    section: "Mathematics",
     options: ["10", "9", "8", "11"],
     correctAnswer: 0
   },
   {
     question: "Square of 6 is:",
+    section: "Mathematics",
     options: ["36", "12", "18", "30"],
     correctAnswer: 0
   },
   {
     question: "What is 15% of 100?",
+    section: "Mathematics",
     options: ["5", "10", "15", "20"],
     correctAnswer: 2
   },
   {
     question: "What is 9²?",
+    section: "Mathematics",
     options: ["81", "72", "90", "99"],
     correctAnswer: 0
   },
   {
     question: "What is 50 + 25 – 10?",
+    section: "Mathematics",
     options: ["55", "65", "75", "85"],
     correctAnswer: 0
   },
   {
     question: "What is 100 – 55?",
+    section: "Mathematics",
     options: ["55", "45", "35", "50"],
     correctAnswer: 1
   },
   {
     question: "What is 8 × 7?",
+    section: "Mathematics",
     options: ["56", "64", "72", "70"],
     correctAnswer: 0
   },
   {
     question: "If a car travels 60 km in 1 hour, how far will it travel in 3 hours?",
+    section: "Mathematics",
     options: ["120 km", "180 km", "200 km", "150 km"],
     correctAnswer: 1
   },
   {
     question: "What is ⅓ of 90?",
+    section: "Mathematics",
     options: ["20", "25", "30", "40"],
     correctAnswer: 2
   },
   {
     question: "Divide 144 by 12:",
+    section: "Mathematics",
     options: ["10", "12", "14", "16"],
     correctAnswer: 1
   },
   {
     question: "If x = 5, what is the value of 2x + 3?",
+    section: "Mathematics",
     options: ["10", "11", "13", "15"],
     correctAnswer: 2
   },
@@ -1951,76 +2029,91 @@
   // Current Affairs / World Knowledge (15 Questions)
   {
     question: "Who is the current Secretary General of the United Nations (2025)?",
+    section: "General Knowledge - Current Affairs",
     options: ["António Guterres", "Ban Ki-moon", "Kofi Annan", "Tedros Adhanom"],
     correctAnswer: 0
   },
   {
     question: "COP28 Climate Summit 2023 was held in:",
+    section: "General Knowledge - Current Affairs",
     options: ["Paris", "Dubai", "London", "Geneva"],
     correctAnswer: 1
   },
   {
     question: "Which country hosted the 2024 Olympic Games?",
+    section: "General Knowledge - Current Affairs",
     options: ["Japan", "USA", "France", "China"],
     correctAnswer: 2
   },
   {
     question: "The currency of Turkey is:",
+    section: "General Knowledge - Current Affairs",
     options: ["Riyal", "Euro", "Lira", "Dinar"],
     correctAnswer: 2
   },
   {
     question: "The capital of Canada is:",
+    section: "General Knowledge - Current Affairs",
     options: ["Toronto", "Vancouver", "Ottawa", "Montreal"],
     correctAnswer: 2
   },
   {
     question: "Pakistan's current Chief of Army Staff (2025):",
+    section: "General Knowledge - Current Affairs",
     options: ["Gen. Bajwa", "Gen. Munir", "Gen. Raheel", "Gen. Kayani"],
     correctAnswer: 1
   },
   {
     question: "The United Nations was formed in:",
+    section: "General Knowledge - Current Affairs",
     options: ["1942", "1945", "1950", "1947"],
     correctAnswer: 1
   },
   {
     question: "Largest Muslim population in the world is in:",
+    section: "General Knowledge - Current Affairs",
     options: ["Pakistan", "Bangladesh", "Saudi Arabia", "Indonesia"],
     correctAnswer: 3
   },
   {
     question: "The OIC stands for:",
+    section: "General Knowledge - Current Affairs",
     options: ["Organization of Islamic Countries", "Office of International Council", "Organization of International Culture", "Overseas Islamic Committee"],
     correctAnswer: 0
   },
   {
     question: "CPEC is a joint venture between Pakistan and:",
+    section: "General Knowledge - Current Affairs",
     options: ["USA", "Saudi Arabia", "China", "Russia"],
     correctAnswer: 2
   },
   {
     question: "World War II ended in:",
+    section: "General Knowledge - Current Affairs",
     options: ["1943", "1944", "1945", "1946"],
     correctAnswer: 2
   },
   {
     question: "Who is the current Prime Minister of the UK (2025)?",
+    section: "General Knowledge - Current Affairs",
     options: ["Rishi Sunak", "Boris Johnson", "Theresa May", "Keir Starmer"],
     correctAnswer: 0
   },
   {
     question: "First woman Prime Minister of Pakistan was:",
+    section: "General Knowledge - Current Affairs",
     options: ["Fatima Jinnah", "Hina Rabbani Khar", "Benazir Bhutto", "Maryam Nawaz"],
     correctAnswer: 2
   },
   {
     question: "UNO headquarters is in:",
+    section: "General Knowledge - Current Affairs",
     options: ["Paris", "New York", "London", "Geneva"],
     correctAnswer: 1
   },
   {
     question: "Current Chairman of Senate Pakistan (2025):",
+    section: "General Knowledge - Current Affairs",
     options: ["Yousuf Raza Gillani", "Shibli Faraz", "Sanjrani", "Aitzaz Ahsan"],
     correctAnswer: 0
   },
@@ -2028,51 +2121,61 @@
   // Everyday Science (10 Questions)
   {
     question: "The hardest natural substance on Earth is:",
+    section: "Everyday Science",
     options: ["Gold", "Iron", "Diamond", "Coal"],
     correctAnswer: 2
   },
   {
     question: "The gas used in soft drinks is:",
+    section: "Everyday Science",
     options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
     correctAnswer: 2
   },
   {
     question: "The smallest unit of matter is:",
+    section: "Everyday Science",
     options: ["Molecule", "Atom", "Cell", "Electron"],
     correctAnswer: 1
   },
   {
     question: "Which vitamin is produced in human skin by sunlight?",
+    section: "Everyday Science",
     options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
     correctAnswer: 3
   },
   {
     question: "Water freezes at:",
+    section: "Everyday Science",
     options: ["50°C", "0°C", "10°C", "-10°C"],
     correctAnswer: 1
   },
   {
     question: "The main source of energy for Earth is:",
+    section: "Everyday Science",
     options: ["Moon", "Sun", "Wind", "Earth itself"],
     correctAnswer: 1
   },
   {
     question: "The boiling point of water is:",
+    section: "Everyday Science",
     options: ["50°C", "80°C", "100°C", "120°C"],
     correctAnswer: 2
   },
   {
     question: "Human blood is red because of:",
+    section: "Everyday Science",
     options: ["Chlorophyll", "Hemoglobin", "Carbon", "Iodine"],
     correctAnswer: 1
   },
   {
     question: "Instrument used to measure temperature is:",
+    section: "Everyday Science",
     options: ["Barometer", "Thermometer", "Hygrometer", "Altimeter"],
     correctAnswer: 1
   },
   {
     question: "Which organ purifies blood in the human body?",
+    section: "Everyday Science",
     options: ["Heart", "Lungs", "Kidneys", "Liver"],
     correctAnswer: 2
   },
@@ -2080,26 +2183,31 @@
   // Islamiat / Pakistan Studies (5 Questions)
   {
     question: "How many Makki Surahs are in the Holy Quran?",
+    section: "Islamiat / Pakistan Studies",
     options: ["86", "114", "28", "26"],
     correctAnswer: 0
   },
   {
     question: "Pakistan came into being on:",
+    section: "Islamiat / Pakistan Studies",
     options: ["15 August 1947", "14 August 1947", "23 March 1940", "11 September 1948"],
     correctAnswer: 1
   },
   {
     question: "First Constitution of Pakistan was enforced in:",
+    section: "Islamiat / Pakistan Studies",
     options: ["1956", "1962", "1973", "1947"],
     correctAnswer: 0
   },
   {
     question: "Who was the first caliph of Islam?",
+    section: "Islamiat / Pakistan Studies",
     options: ["Umar", "Uthman", "Ali", "Abu Bakr"],
     correctAnswer: 3
   },
   {
     question: "Founder of Pakistan was:",
+    section: "Islamiat / Pakistan Studies",
     options: ["Liaquat Ali Khan", "Allama Iqbal", "Quaid-e-Azam", "Zia-ul-Haq"],
     correctAnswer: 2
   },
@@ -2107,51 +2215,61 @@
   // Science - Biology (10 Questions)
   {
     question: "What is the powerhouse of the cell?",
+    section: "Science - Biology",
     options: ["Nucleus", "Mitochondria", "Ribosome", "Endoplasmic Reticulum"],
     correctAnswer: 1
   },
   {
     question: "What gas do plants absorb from the atmosphere?",
+    section: "Science - Biology",
     options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
     correctAnswer: 2
   },
   {
     question: "Which of the following is responsible for carrying oxygen in the blood?",
+    section: "Science - Biology",
     options: ["White Blood Cells", "Platelets", "Plasma", "Red Blood Cells"],
     correctAnswer: 3
   },
   {
     question: "What is the process by which plants make their own food?",
+    section: "Science - Biology",
     options: ["Respiration", "Transpiration", "Photosynthesis", "Germination"],
     correctAnswer: 2
   },
   {
     question: "Which organ is responsible for pumping blood throughout the body?",
+    section: "Science - Biology",
     options: ["Lungs", "Liver", "Kidneys", "Heart"],
     correctAnswer: 3
   },
   {
     question: "What is the basic unit of heredity?",
+    section: "Science - Biology",
     options: ["Cell", "Tissue", "Gene", "Organ"],
     correctAnswer: 2
   },
   {
     question: "Which planet is known as the 'Red Planet'?",
+    section: "Science - Biology",
     options: ["Earth", "Mars", "Jupiter", "Venus"],
     correctAnswer: 1
   },
   {
     question: "What is the largest organ in the human body?",
+    section: "Science - Biology",
     options: ["Heart", "Brain", "Skin", "Liver"],
     correctAnswer: 2
   },
   {
     question: "Which animal lays eggs?",
+    section: "Science - Biology",
     options: ["Dog", "Cat", "Chicken", "Cow"],
     correctAnswer: 2
   },
   {
     question: "What is the chemical symbol for water?",
+    section: "Science - Biology",
     options: ["CO2", "O2", "H2O", "N2"],
     correctAnswer: 2
   }
@@ -2174,6 +2292,7 @@
         const instructionsScreen = document.getElementById('instructions-screen');
         const beginTestButton = document.getElementById('begin-test-button');
         const testScreen = document.getElementById('test-screen');
+        const questionSectionDisplay = document.getElementById('question-section'); // New element for section
         const questionContainer = document.getElementById('question-container');
         const optionsContainer = document.getElementById('options-container');
         const prevButton = document.getElementById('prev-button');
@@ -2337,6 +2456,7 @@
 
         function renderQuestion() {
             const question = quizData[currentQuestionIndex];
+            questionSectionDisplay.textContent = `Section: ${question.section}`; // Display section
             questionContainer.textContent = `Q${currentQuestionIndex + 1}: ${question.question}`;
             optionsContainer.innerHTML = ''; // Clear previous options
 
@@ -2785,21 +2905,34 @@
             const { firstOperand, displayValue, operator } = calculator;
             const inputValue = parseFloat(displayValue);
 
+            // If an operator has already been entered and we're waiting for the second operand,
+            // update the operator and return.
             if (operator && calculator.waitingForSecondOperand) {
                 calculator.operator = nextOperator;
                 return;
             }
 
+            // Store the current display value as the firstOperand if it's not already set.
             if (firstOperand === null) {
                 calculator.firstOperand = inputValue;
             } else if (operator) {
+                // If there's an existing operator, perform the calculation.
                 const result = performCalculation[operator](firstOperand, inputValue);
-                calculator.displayValue = String(parseFloat(result.toFixed(7)));
+                // Handle division by zero
+                if (result === 'Error') {
+                    calculator.displayValue = 'Error';
+                    calculator.firstOperand = null;
+                    calculator.operator = null;
+                    calculator.waitingForSecondOperand = false;
+                    updateDisplay();
+                    return;
+                }
+                calculator.displayValue = String(parseFloat(result.toFixed(7))); // Limit decimal places
                 calculator.firstOperand = parseFloat(calculator.displayValue);
             }
 
-            calculator.waitingForSecondOperand = true;
-            calculator.operator = nextOperator;
+            calculator.waitingForSecondOperand = true; // Set flag to indicate waiting for next operand
+            calculator.operator = nextOperator; // Store the new operator
             updateDisplay();
         }
 
@@ -2820,10 +2953,11 @@
                 }
 
                 if (target.classList.contains('operator')) {
-                    if (target.value === '=') {
+                    const operatorValue = target.dataset.operator; // Get operator from data-operator attribute
+                    if (operatorValue === '=') {
                         calculateResultCalc();
                     } else {
-                        handleOperator(target.textContent);
+                        handleOperator(operatorValue);
                     }
                     return;
                 }
@@ -2840,7 +2974,7 @@
 
                 if (target.classList.contains('percentage')) {
                     calculator.displayValue = String(parseFloat(calculator.displayValue) / 100);
-                    calculator.firstOperand = null;
+                    calculator.firstOperand = null; // Clear previous state for percentage
                     calculator.waitingForSecondOperand = false;
                     updateDisplay();
                     return;
@@ -2866,15 +3000,22 @@
         function calculateResultCalc() {
             const inputValue = parseFloat(calculator.displayValue);
 
+            // If no first operand or operator is set, or if waiting for second operand, do nothing.
             if (calculator.firstOperand === null || calculator.operator === null || calculator.waitingForSecondOperand) {
                 return;
             }
 
             const result = performCalculation[calculator.operator](calculator.firstOperand, inputValue);
-            calculator.displayValue = String(parseFloat(result.toFixed(7)));
-            calculator.firstOperand = null;
-            calculator.operator = null;
-            calculator.waitingForSecondOperand = false;
+            // Handle division by zero explicitly for the result display
+            if (result === 'Error') {
+                calculator.displayValue = 'Error';
+            } else {
+                calculator.displayValue = String(parseFloat(result.toFixed(7))); // Limit decimal places
+            }
+
+            calculator.firstOperand = null; // Reset for next calculation
+            calculator.operator = null; // Reset operator
+            calculator.waitingForSecondOperand = false; // Not waiting anymore
             updateDisplay();
         }
 
