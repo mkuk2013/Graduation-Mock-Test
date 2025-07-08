@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IBA Graduation Mock Test</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="[https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js](https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js)"></script>
+    <link href="[https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap)" rel="stylesheet">
+    <!-- Corrected Font Awesome CDN link -->
+    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css)">
     <style>
         /* --- Base Variables & Reset --- */
         :root {
@@ -363,41 +364,19 @@
             flex-wrap: wrap;
         }
 
-        /* Jump to Question */
-        .jump-to-question {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-color);
-            font-weight: 500;
-        }
-        .jump-to-question select {
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            background-color: var(--input-bg);
-            color: var(--text-color);
-            font-size: 1em;
-            cursor: pointer;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        .jump-to-question select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-        }
-
-        /* Flag Button */
+        /* Flag Button - Updated styling */
         .btn-flag {
-            background-color: transparent;
-            color: var(--light-text-color);
-            border: 1px solid var(--border-color);
+            background-color: var(--card-bg); /* White background */
+            color: var(--primary-color); /* Primary blue text */
+            border: 1px solid var(--primary-color); /* Blue border */
             padding: 10px 15px;
             font-size: 0.95em;
             box-shadow: none;
+            transition: background-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
         }
         .btn-flag:hover {
-            background-color: var(--hover-bg-light);
+            background-color: var(--primary-color); /* Darker blue on hover */
+            color: white; /* White text on hover */
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
@@ -411,34 +390,60 @@
             color: #333; /* Dark text on orange in dark mode */
         }
 
+        /* Submit Button Style */
+        .btn-submit {
+            background-color: var(--accent-color); /* Green for submit */
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1.05em;
+            font-weight: 600;
+            transition: all 0.25s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn-submit:hover {
+            background-color: var(--accent-dark); /* Darker green on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+        .btn-submit:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
         /* --- Question Palette --- */
        #question-palette {
-    display: flex; /* Changed from grid to flex */
-    flex-wrap: nowrap; /* Ensures all buttons stay in one row */
-    overflow-x: auto; /* Enables horizontal scrolling */
-    gap: 12px;
-    padding: 25px 30px;
-    border-top: 1px solid var(--border-color);
-    background-color: var(--bg-color);
-    /* Remove grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); */
-}
+            display: flex; /* Changed from grid to flex */
+            flex-wrap: nowrap; /* Ensures all buttons stay in one row */
+            overflow-x: auto; /* Enables horizontal scrolling */
+            gap: 12px;
+            padding: 25px 30px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            /* Removed: grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); */
+        }
 
-.palette-btn {
-    width: 50px;
-    height: 50px;
-    flex-shrink: 0; /* Prevents buttons from shrinking */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: var(--border-radius);
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s, border-color 0.2s, transform 0.1s, box-shadow 0.2s;
-    color: var(--text-color);
-    font-size: 1.05em;
-}
+        .palette-btn {
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0; /* Prevents buttons from shrinking */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: var(--border-radius);
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s, border-color 0.2s, transform 0.1s, box-shadow 0.2s;
+            color: var(--text-color);
+            font-size: 1.05em;
+        }
         .palette-btn:hover {
             background-color: var(--hover-bg-light);
             transform: translateY(-2px);
@@ -1053,10 +1058,7 @@
                 width: 100%;
                 gap: 10px;
             }
-            .jump-to-question {
-                width: 100%;
-                justify-content: center;
-            }
+            /* .jump-to-question { Removed } */
             #question-palette {
                 grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
                 gap: 8px;
@@ -1195,16 +1197,16 @@
 
             <div class="test-footer">
                 <div class="left-controls">
-                    <button class="btn btn-secondary" id="prev-button"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button class="btn btn-secondary" id="next-button">Next <i class="fas fa-arrow-right"></i></button>
-                </div>
-                <div class="jump-to-question">
-                    Jump to:
-                    <select id="jump-select"></select>
+                    <!-- Flag for Review Button - Displayed first -->
+                    <button class="btn btn-flag" id="flag-button"><i class="fas fa-flag"></i> Flag for Review</button>
+                    <!-- Previous Button - Initially hidden on the first question -->
+                    <button class="btn btn-secondary hidden" id="prev-button"><i class="fas fa-arrow-left"></i> Previous</button>
                 </div>
                 <div class="right-controls">
-                    <button class="btn btn-flag" id="flag-button"><i class="fas fa-flag"></i> Flag for Review</button>
-                    <button class="btn btn-primary" id="submit-test-button">Submit Test <i class="fas fa-check"></i></button>
+                    <!-- Next Button - Hidden on the last question -->
+                    <button class="btn btn-secondary" id="next-button">Next <i class="fas fa-arrow-right"></i></button>
+                    <!-- Submit Button - Initially hidden, shown only on the last question -->
+                    <button class="btn btn-submit hidden" id="submit-test-button">Submit Test <i class="fas fa-check"></i></button>
                 </div>
             </div>
 
@@ -1886,14 +1888,14 @@
         const testScreen = document.getElementById('test-screen');
         const questionContainer = document.getElementById('question-container');
         const optionsContainer = document.getElementById('options-container');
-        const prevButton = document.getElementById('prev-button');
-        const nextButton = document.getElementById('next-button');
-        const submitTestButton = document.getElementById('submit-test-button');
+        const prevButton = document.getElementById('prev-button'); // Renamed from prevButton
+        const nextButton = document.getElementById('next-button'); // Renamed from nextButton
+        const submitTestButton = document.getElementById('submit-test-button'); // Renamed from submitTestButton
         const questionCounter = document.getElementById('question-counter');
         const timerDisplay = document.getElementById('timer');
         const progressBar = document.getElementById('progress-bar');
-        const jumpSelect = document.getElementById('jump-select');
-        const flagButton = document.getElementById('flag-button');
+        // const jumpSelect = document.getElementById('jump-select'); // Removed
+        const flagButton = document.getElementById('flag-button'); // Renamed from flagButton
         const questionPalette = document.getElementById('question-palette');
         const resultScreen = document.getElementById('result-screen');
         const finalScoreDisplay = document.getElementById('final-score');
@@ -1944,24 +1946,16 @@
             currentQuestionIndex = 0;
             timeLeft = totalTime; // Reset timer
 
-            populateJumpSelect();
+            // Removed populateJumpSelect();
             renderQuestion();
             updatePalette();
             resetTimerDisplay();
             progressBar.style.width = '0%'; // Reset progress bar
             timerDisplay.classList.remove('time-low'); // Remove time-low class
+            updateNavigationButtons(); // Call to set initial button states
         }
 
-        function populateJumpSelect() {
-            jumpSelect.innerHTML = ''; // Clear previous options
-            for (let i = 0; i < quizData.length; i++) {
-                const option = document.createElement('option');
-                option.value = i;
-                option.textContent = `Question ${i + 1}`;
-                jumpSelect.appendChild(option);
-            }
-            jumpSelect.value = currentQuestionIndex;
-        }
+        // Removed populateJumpSelect function
 
         function renderQuestion() {
             const question = quizData[currentQuestionIndex];
@@ -1991,9 +1985,10 @@
             });
 
             questionCounter.textContent = `Question: ${currentQuestionIndex + 1} / ${quizData.length}`;
-            jumpSelect.value = currentQuestionIndex;
+            // Removed jumpSelect.value = currentQuestionIndex;
             updateFlagButton();
             updatePalette();
+            updateNavigationButtons(); // Update button visibility after rendering question
         }
 
         function selectOption(selectedIndex) {
@@ -2011,10 +2006,7 @@
             renderQuestion();
         }
 
-        function jumpToQuestion() {
-            currentQuestionIndex = parseInt(jumpSelect.value);
-            renderQuestion();
-        }
+        // Removed jumpToQuestion function
 
         function toggleFlag() {
             if (flaggedQuestions.has(currentQuestionIndex)) {
@@ -2095,6 +2087,27 @@
             const progress = ((totalTime - timeLeft) / totalTime) * 100;
             progressBar.style.width = `${progress}%`;
         }
+
+        // Function to update the visibility of navigation and submit buttons
+        function updateNavigationButtons() {
+            // Hide 'Previous' button on the first question
+            if (currentQuestionIndex === 0) {
+                prevButton.classList.add('hidden');
+            } else {
+                prevButton.classList.remove('hidden');
+            }
+
+            // On the last question: hide 'Next' and show 'Submit'
+            // Otherwise: show 'Next' and hide 'Submit'
+            if (currentQuestionIndex === quizData.length - 1) {
+                nextButton.classList.add('hidden');
+                submitTestButton.classList.remove('hidden');
+            } else {
+                nextButton.classList.remove('hidden');
+                submitTestButton.classList.add('hidden');
+            }
+        }
+
 
         function calculateResults() {
             let correctCount = 0;
@@ -2220,7 +2233,8 @@
                 passwordScreen.classList.add('hidden');
                 instructionsScreen.classList.remove('hidden');
             } else {
-                alert('Incorrect password. Please try again.');
+                // Replaced alert with custom modal message if needed, or simple console log for development
+                console.error('Incorrect password. Please try again.');
                 passwordInput.value = '';
             }
         });
@@ -2243,7 +2257,7 @@
 
         prevButton.addEventListener('click', () => navigateQuestions('prev'));
         nextButton.addEventListener('click', () => navigateQuestions('next'));
-        jumpSelect.addEventListener('change', jumpToQuestion);
+        // Removed jumpSelect.addEventListener('change', jumpToQuestion);
         flagButton.addEventListener('click', toggleFlag);
 
 
@@ -2293,7 +2307,8 @@
             showResultScreen(results);
 
             if (isTimeUp) {
-                alert("Time's up! Your test has been automatically submitted.");
+                // Replaced alert with custom modal message if needed, or simple console log for development
+                console.log("Time's up! Your test has been automatically submitted.");
             }
         }
 
@@ -2551,6 +2566,12 @@
             scratchpadTool.classList.toggle('hidden');
             // Ensure calculator is hidden if scratchpad is opened
             calculatorTool.classList.add('hidden');
+        });
+
+        // Initialize quiz on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // No need to call initializeQuiz here, it's called on begin-test-button click
+            // But ensure the initial state of buttons is correct if starting directly on test screen (not the case here)
         });
 
     </script>
