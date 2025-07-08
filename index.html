@@ -4,74 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IBA Graduation BPS 5-15 Mock Test Series</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        /* --- Modern Color Palette & Variables --- */
+        /* --- Base Variables & Reset (Matching graduation-quiz1.html) --- */
         :root {
-            /* Light Mode */
-            --primary-blue: #007bff; /* Deep Blue - Branding, Headers */
-            --primary-blue-dark: #0056b3;
-            --primary-blue-light: #66b0ff;
+            /* New Vibrant & Professional Palette */
+            --primary-color: #5A67D8; /* Indigo Blue */
+            --primary-dark: #434190;
+            --secondary-color: #48BB78; /* Emerald Green */
+            --secondary-dark: #38A169;
+            --accent-color: #F6AD55; /* Warm Orange */
+            --accent-dark: #ED8936;
+            --warning-color: #ECC94B; /* Yellow */
+            --danger-color: #F56565; /* Red */
 
-            --accent-green: #28a745; /* Success Green - Buttons, Highlights */
-            --accent-green-dark: #218838;
-            --accent-green-light: #5cb85c;
+            --text-color: #2D3748; /* Dark Grey */
+            --light-text-color: #718096; /* Muted Grey */
+            --bg-color: #F7FAFC; /* Light Grey-Blue background */
+            --card-bg: #FFFFFF; /* Pure White card background */
+            --border-color: #E2E8F0; /* Light border */
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Enhanced, softer shadow */
+            --border-radius: 16px; /* More rounded */
+            --input-bg: #FFFFFF;
+            --hover-bg-light: rgba(0, 0, 0, 0.05);
 
-            --text-dark: #343a40; /* Dark Grey - Primary text */
-            --text-light: #6c757d; /* Muted Grey - Secondary text */
-            --white: #ffffff;
-            --off-white: #f8f9fa; /* Page Background */
-
-            --card-bg: #ffffff;
-            --border-color: #e9ecef; /* Light border for cards */
-            --shadow-light: 0 6px 15px rgba(0, 0, 0, 0.08); /* Soft shadow */
-            --shadow-hover: 0 12px 25px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
-
-            /* Notice Specific */
-            --notice-bg: #fff3cd; /* Light warning yellow */
-            --notice-text: #856404; /* Dark yellow/brown text */
-            --notice-border: #ffeeba; /* Lighter border */
-            --notice-icon: #ffc107; /* Orange/Yellow icon */
-
-            /* Dark Mode */
-            --dark-primary-bg: #2c3e50; /* Deep Slate Blue - Page Background */
-            --dark-secondary-bg: #34495e; /* Slightly lighter for cards */
-            --dark-text-light: #ecf0f1; /* Light text */
-            --dark-text-muted: #bdc3c7; /* Muted light text */
-            --dark-border-color: #4a657e;
-            --dark-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-
-            --dark-notice-bg: #5a4b1e;
-            --dark-notice-text: #fdfdb9;
-            --dark-notice-border: #6a5e2f;
-            --dark-notice-icon: #ffe082;
+            /* Notice Specific (Adjusted for new palette) */
+            --notice-bg: var(--warning-color); /* Yellow */
+            --notice-text: var(--text-color); /* Dark text */
+            --notice-border: var(--accent-dark); /* Darker orange/yellow border */
+            --notice-icon: var(--accent-dark); /* Orange/Yellow icon */
         }
 
-        /* Dark Mode Overrides */
+        /* Dark Mode Variables (Matching graduation-quiz1.html) */
         body.dark-mode {
-            --primary-blue: #6fa0d1; /* Lighter blue for headers */
-            --primary-blue-dark: #5b8dc1;
-            --primary-blue-light: #7cace3;
+            --primary-color: #7F9CF5; /* Lighter Indigo */
+            --primary-dark: #667EEA;
+            --secondary-color: #68D391; /* Lighter Emerald */
+            --secondary-dark: #48BB78;
+            --accent-color: #FBD38D; /* Lighter Orange */
+            --accent-dark: #F6AD55;
+            --warning-color: #F6E05E; /* Lighter Yellow */
+            --danger-color: #FC8181; /* Lighter Red */
 
-            --accent-green: #4cd180; /* Brighter green for buttons */
-            --accent-green-dark: #3aa86a;
-            --accent-green-light: #6fdd9c;
+            --text-color: #E2E8F0; /* Light Grey */
+            --light-text-color: #A0AEC0; /* Muted light grey */
+            --bg-color: #1A202C; /* Very Dark Blue-Grey background */
+            --card-bg: #2D3748; /* Dark Blue-Grey card background */
+            --border-color: #4A5568; /* Darker border */
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* More prominent shadow */
+            --input-bg: #4A5568;
+            --hover-bg-light: rgba(255, 255, 255, 0.1);
 
-            --text-dark: var(--dark-text-light);
-            --text-light: var(--dark-text-muted);
-            --white: var(--dark-text-light);
-            --off-white: var(--dark-primary-bg);
-
-            --card-bg: var(--dark-secondary-bg);
-            --border-color: var(--dark-border-color);
-            --shadow-light: var(--dark-shadow);
-            --shadow-hover: var(--dark-shadow); /* Keep consistent */
-
-            --notice-bg: var(--dark-notice-bg);
-            --notice-text: var(--dark-notice-text);
-            --notice-border: var(--dark-notice-border);
-            --notice-icon: var(--dark-notice-icon);
+            /* Notice Specific (Dark Mode) */
+            --notice-bg: #5A4B1E; /* Darker warning yellow for dark mode */
+            --notice-text: #FBD38D; /* Lighter text for dark mode notice */
+            --notice-border: #ED8936; /* Darker orange for border */
+            --notice-icon: #F6AD55; /* Orange icon */
         }
 
         /* --- Global Styles & Reset --- */
@@ -86,9 +75,9 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--off-white);
-            color: var(--text-dark);
+            font-family: 'Inter', sans-serif; /* Changed to Inter */
+            background-color: var(--bg-color);
+            color: var(--text-color);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -101,13 +90,15 @@
         /* --- Header --- */
         .page-header {
             width: 100%;
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 20px 30px;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-dark) 100%); /* Gradient background */
+            color: white;
+            padding: 20px 40px; /* Increased padding */
             text-align: center;
-            box-shadow: var(--shadow-light);
+            font-weight: 700;
+            font-size: 1.4em;
+            box-shadow: var(--shadow); /* Use new shadow variable */
             flex-shrink: 0;
-            z-index: 1000; /* High z-index to stay on top */
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -116,40 +107,40 @@
             border-bottom: 1px solid rgba(255,255,255,0.2);
         }
         .page-header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.6em;
+            font-family: 'Inter', sans-serif; /* Changed to Inter */
+            font-size: 1.4em;
             margin: 0;
             flex-grow: 1;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         .mode-toggle {
             cursor: pointer;
-            font-size: 1.8em;
-            color: var(--white);
+            font-size: 1.7em; /* Slightly smaller for consistency */
+            color: white;
             padding: 10px;
             border-radius: 50%;
-            transition: background-color 0.2s, transform 0.2s;
+            transition: background-color 0.3s, transform 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            outline: none; /* Remove default outline */
+            outline: none;
         }
         .mode-toggle:hover, .mode-toggle:focus {
             background-color: rgba(255, 255, 255, 0.25);
             transform: scale(1.1);
         }
         .mode-toggle i {
-            pointer-events: none; /* Ensure click goes to parent */
+            pointer-events: none;
         }
 
         /* --- Footer --- */
         .page-footer {
-            font-size: 0.85em;
+            font-size: 0.9em; /* Adjusted font size */
             padding: 15px 20px;
             margin-top: auto;
-            background-color: var(--primary-blue);
-            color: var(--white);
-            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+            background-color: var(--primary-dark); /* Use primary-dark for footer */
+            color: white;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15); /* Adjusted shadow */
             text-align: center;
             z-index: 100;
         }
@@ -166,14 +157,14 @@
         /* --- Main Content Container --- */
         .container {
             width: 100%;
-            max-width: 1300px; /* Slightly wider container */
-            margin: 40px auto;
+            max-width: 1100px; /* Consistent max-width with quiz page */
+            margin: 30px auto; /* Consistent margin */
             padding: 0 25px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 40px; /* Space between sections */
+            gap: 40px;
         }
 
         /* --- Notice Bar --- */
@@ -181,34 +172,34 @@
             background-color: var(--notice-bg);
             color: var(--notice-text);
             padding: 25px 35px;
-            border-radius: 12px;
+            border-radius: var(--border-radius); /* Use new border-radius variable */
             font-size: 1.15em;
             text-align: center;
-            box-shadow: var(--shadow-light);
+            box-shadow: var(--shadow); /* Use new shadow variable */
             width: 100%;
-            max-width: 850px; /* Slightly wider notice */
+            max-width: 850px;
             font-weight: 500;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
             border: 1px solid var(--notice-border);
-            animation: fadeInScale 0.6s ease-out; /* Subtle animation */
+            animation: fadeInScale 0.6s ease-out;
             line-height: 1.4;
         }
         .notice i {
-            font-size: 2em; /* Larger, more prominent icon */
+            font-size: 2em;
             color: var(--notice-icon);
             min-width: 30px;
         }
         .notice a {
             color: var(--notice-text);
             text-decoration: underline;
-            font-weight: 700; /* Bolder link */
+            font-weight: 700;
             transition: color 0.2s ease;
         }
         .notice a:hover {
-            color: var(--text-dark); /* Darken link on hover */
+            color: var(--text-color); /* Darken link on hover */
         }
         @keyframes fadeInScale {
             from { opacity: 0; transform: scale(0.98); }
@@ -217,14 +208,15 @@
 
         /* --- Section Heading --- */
         .section-heading {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.8em;
-            color: var(--primary-blue);
+            font-family: 'Inter', sans-serif; /* Changed to Inter */
+            font-size: 2.5em; /* Adjusted font size */
+            color: var(--primary-color); /* Use primary-color */
             margin-bottom: 10px;
             text-align: center;
-            font-weight: 700;
+            font-weight: 800; /* Bolder font weight */
             position: relative;
-            padding-bottom: 15px; /* More space for underline */
+            padding-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.05); /* Subtle text shadow */
         }
         .section-heading::after {
             content: '';
@@ -232,16 +224,16 @@
             left: 50%;
             bottom: 0;
             transform: translateX(-50%);
-            width: 100px; /* Slightly longer underline */
-            height: 5px; /* Thicker underline */
-            background: linear-gradient(to right, var(--primary-blue-light), var(--primary-blue-dark)); /* Gradient underline */
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--primary-dark)); /* Gradient underline */
             border-radius: 3px;
         }
 
         /* --- Mock Test Grid --- */
         .mock-test-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Slightly wider min width */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             width: 100%;
             padding: 0;
@@ -250,8 +242,8 @@
         /* --- Mock Test Card --- */
         .mock-test-card {
             background-color: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: var(--shadow-light);
+            border-radius: var(--border-radius); /* Use new border-radius variable */
+            box-shadow: var(--shadow); /* Use new shadow variable */
             padding: 30px;
             text-align: center;
             transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -261,23 +253,23 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            min-height: 240px; /* Taller cards */
+            min-height: 240px;
             position: relative;
             overflow: hidden;
-            will-change: transform, box-shadow; /* Optimize for animation */
+            will-change: transform, box-shadow;
         }
 
         .mock-test-card:hover {
-            transform: translateY(-12px); /* More pronounced lift */
-            box-shadow: var(--shadow-hover); /* Deeper shadow */
-            border-color: var(--primary-blue-light); /* Accent border on hover */
+            transform: translateY(-8px); /* Slightly less pronounced lift for consistency */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Adjusted shadow on hover */
+            border-color: var(--primary-color); /* Accent border on hover */
         }
 
         .mock-test-card .card-icon-wrapper {
-            background: linear-gradient(135deg, var(--primary-blue-light), var(--primary-blue-dark)); /* Gradient background for icon */
-            padding: 18px 20px; /* More padding */
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); /* Gradient background for icon */
+            padding: 18px 20px;
             border-radius: 50%;
-            margin-bottom: 20px; /* Space below icon */
+            margin-bottom: 20px;
             display: inline-flex;
             justify-content: center;
             align-items: center;
@@ -285,45 +277,45 @@
             transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .mock-test-card:hover .card-icon-wrapper {
-            transform: scale(1.05); /* Slightly expand icon on hover */
+            transform: scale(1.05);
         }
 
         .mock-test-card .card-icon {
-            font-size: 2.5em; /* Larger icon */
-            color: var(--white); /* White icon */
-            line-height: 1; /* Remove extra space */
+            font-size: 2.5em;
+            color: white; /* Changed to white */
+            line-height: 1;
         }
 
         .mock-test-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.2em; /* Larger, bolder title */
-            color: var(--primary-blue-dark);
+            font-family: 'Inter', sans-serif; /* Changed to Inter */
+            font-size: 2em; /* Adjusted font size */
+            color: var(--primary-color); /* Use primary-color */
             margin-bottom: 10px;
             font-weight: 700;
             transition: color 0.3s ease;
         }
         .mock-test-card:hover h3 {
-            color: var(--primary-blue); /* Change title color on hover */
+            color: var(--primary-dark); /* Change title color on hover */
         }
 
         .mock-test-card p {
             font-size: 0.95em;
-            color: var(--text-light);
+            color: var(--light-text-color); /* Use light-text-color */
             margin-bottom: 25px;
             flex-grow: 1;
         }
 
         /* --- Buttons --- */
         .btn {
-            background: linear-gradient(to right, var(--accent-green), var(--accent-green-dark)); /* Gradient button */
-            color: var(--white);
+            background: linear-gradient(to right, var(--secondary-color), var(--secondary-dark)); /* Gradient button */
+            color: white; /* Changed to white */
             padding: 14px 30px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px; /* Consistent border-radius */
             font-size: 1.05em;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s ease; /* Smooth transition for all properties */
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -333,8 +325,8 @@
         }
 
         .btn:hover, .btn:focus {
-            background: linear-gradient(to right, var(--accent-green-light), var(--accent-green)); /* Lighter gradient on hover/focus */
-            transform: translateY(-4px); /* More lift */
+            background: linear-gradient(to right, var(--secondary-dark), var(--secondary-color)); /* Lighter gradient on hover/focus */
+            transform: translateY(-4px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
         .btn:active {
@@ -344,46 +336,50 @@
 
         /* --- Coming Soon Card Specific Styles --- */
         .mock-test-card.coming-soon {
-            opacity: 0.7; /* Slightly dim the card */
-            cursor: not-allowed; /* Indicate it's not clickable */
-            pointer-events: none; /* Disable all pointer events */
-            filter: grayscale(30%); /* Subtle grayscale effect */
+            opacity: 0.7;
+            cursor: not-allowed;
+            pointer-events: none;
+            filter: grayscale(30%);
         }
         .mock-test-card.coming-soon:hover {
-            transform: none; /* No lift on hover */
-            box-shadow: var(--shadow-light); /* No deeper shadow */
-            border-color: var(--border-color); /* No accent border */
+            transform: none;
+            box-shadow: var(--shadow); /* Use new shadow variable */
+            border-color: var(--border-color);
         }
         .mock-test-card.coming-soon .card-icon-wrapper {
-            background: linear-gradient(135deg, #a0a8b0, #7a828b); /* Grey gradient for coming soon icon */
+            background: linear-gradient(135deg, #a0aec0, #718096); /* Grey gradient for coming soon icon (using light-text-color shades) */
             box-shadow: none;
         }
         .mock-test-card.coming-soon h3 {
-            color: var(--text-light); /* Muted title color */
+            color: var(--light-text-color); /* Muted title color */
+        }
+        .mock-test-card.coming-soon p {
+            color: var(--light-text-color);
         }
         .mock-test-card.coming-soon .btn {
-            background: #6c757d; /* Muted grey button */
+            background: #A0AEC0; /* Muted grey button (using a shade of light-text-color) */
+            color: white;
             cursor: not-allowed;
             box-shadow: none;
         }
         .mock-test-card.coming-soon .btn:hover {
-            background: #6c757d; /* Keep muted on hover */
+            background: #A0AEC0;
             transform: none;
             box-shadow: none;
         }
         body.dark-mode .mock-test-card.coming-soon .card-icon-wrapper {
-            background: linear-gradient(135deg, #5a6b7e, #4a5a6b);
+            background: linear-gradient(135deg, #4A5568, #2D3748);
         }
         body.dark-mode .mock-test-card.coming-soon .btn {
-            background: #7f8c8d;
+            background: #606F82;
         }
 
         /* --- New Badge for Mock Test 1 --- */
         .mock-test-card .new-badge {
             position: absolute;
-            top: 0px; /* Adjust as needed */
-            right: 0px; /* Adjust as needed */
-            background-color: #ff4757; /* Bright red */
+            top: 0px;
+            right: 0px;
+            background-color: var(--danger-color); /* Use danger-color */
             color: white;
             padding: 8px 15px;
             border-bottom-left-radius: 10px;
@@ -391,11 +387,11 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
-            transform: rotate(0deg); /* No rotation for a cleaner look */
+            box-shadow: 0 2px 8px rgba(245, 101, 101, 0.4); /* Adjusted shadow color */
+            transform: rotate(0deg);
             transform-origin: top right;
-            z-index: 10; /* Ensure it's above other content */
-            animation: pulse 1.5s infinite ease-in-out; /* Subtle pulsing animation */
+            z-index: 10;
+            animation: pulse 1.5s infinite ease-in-out;
         }
 
         @keyframes pulse {
@@ -410,22 +406,22 @@
                 max-width: 960px;
             }
             .section-heading {
-                font-size: 2.5em;
+                font-size: 2.2em;
             }
         }
 
         @media (max-width: 768px) {
             .page-header {
-                padding: 15px 20px;
+                padding: 15px 25px; /* Adjusted padding */
             }
             .page-header h1 {
-                font-size: 1.3em;
+                font-size: 1.2em;
             }
             .mode-toggle {
-                font-size: 1.6em;
+                font-size: 1.5em;
             }
             .container {
-                margin: 30px auto;
+                margin: 20px auto; /* Adjusted margin */
                 padding: 0 15px;
                 gap: 30px;
             }
@@ -438,7 +434,7 @@
                 font-size: 1.8em;
             }
             .section-heading {
-                font-size: 2.2em;
+                font-size: 2em; /* Adjusted font size */
                 padding-bottom: 10px;
             }
             .section-heading::after {
@@ -446,7 +442,7 @@
                 height: 4px;
             }
             .mock-test-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust for smaller screens */
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 25px;
             }
             .mock-test-card {
@@ -500,7 +496,7 @@
                 height: 3px;
             }
             .mock-test-grid {
-                grid-template-columns: 1fr; /* Single column on very small screens */
+                grid-template-columns: 1fr;
                 gap: 20px;
             }
             .mock-test-card {
@@ -520,11 +516,6 @@
             .mock-test-card p {
                 font-size: 0.85em;
                 margin-bottom: 20px;
-            }
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.9em;
-                gap: 8px;
             }
             .page-footer {
                 padding: 10px 15px;
@@ -641,9 +632,8 @@
         </div>
     </div>
 
-    <div class="page-footer">
-        2025  &copy; Graduation Mock Test Series Powered By <a href="https://mock-test-hub.netlify.app" target="_blank" rel="noopener noreferrer">Mock Test Hub</a>
-    </div>
+    <footer class="page-footer">
+ <p>&copy; 2025 Graduation Mock Test Series. All rights reserved. Crafted with dedication by <a href="https://mock-test-hub.netlify.app" target="_blank" rel="noopener noreferrer">Mock Test Hub</a></p>    </footer>
 
 <script>
     const modeIcon = document.getElementById('mode-icon');
