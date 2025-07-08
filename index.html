@@ -1,1 +1,681 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBA Graduation BPS 5-15 Mock Test Series</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* --- Modern Color Palette & Variables --- */
+        :root {
+            /* Light Mode */
+            --primary-blue: #007bff; /* Deep Blue - Branding, Headers */
+            --primary-blue-dark: #0056b3;
+            --primary-blue-light: #66b0ff;
+
+            --accent-green: #28a745; /* Success Green - Buttons, Highlights */
+            --accent-green-dark: #218838;
+            --accent-green-light: #5cb85c;
+
+            --text-dark: #343a40; /* Dark Grey - Primary text */
+            --text-light: #6c757d; /* Muted Grey - Secondary text */
+            --white: #ffffff;
+            --off-white: #f8f9fa; /* Page Background */
+
+            --card-bg: #ffffff;
+            --border-color: #e9ecef; /* Light border for cards */
+            --shadow-light: 0 6px 15px rgba(0, 0, 0, 0.08); /* Soft shadow */
+            --shadow-hover: 0 12px 25px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+
+            /* Notice Specific */
+            --notice-bg: #fff3cd; /* Light warning yellow */
+            --notice-text: #856404; /* Dark yellow/brown text */
+            --notice-border: #ffeeba; /* Lighter border */
+            --notice-icon: #ffc107; /* Orange/Yellow icon */
+
+            /* Dark Mode */
+            --dark-primary-bg: #2c3e50; /* Deep Slate Blue - Page Background */
+            --dark-secondary-bg: #34495e; /* Slightly lighter for cards */
+            --dark-text-light: #ecf0f1; /* Light text */
+            --dark-text-muted: #bdc3c7; /* Muted light text */
+            --dark-border-color: #4a657e;
+            --dark-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+
+            --dark-notice-bg: #5a4b1e;
+            --dark-notice-text: #fdfdb9;
+            --dark-notice-border: #6a5e2f;
+            --dark-notice-icon: #ffe082;
+        }
+
+        /* Dark Mode Overrides */
+        body.dark-mode {
+            --primary-blue: #6fa0d1; /* Lighter blue for headers */
+            --primary-blue-dark: #5b8dc1;
+            --primary-blue-light: #7cace3;
+
+            --accent-green: #4cd180; /* Brighter green for buttons */
+            --accent-green-dark: #3aa86a;
+            --accent-green-light: #6fdd9c;
+
+            --text-dark: var(--dark-text-light);
+            --text-light: var(--dark-text-muted);
+            --white: var(--dark-text-light);
+            --off-white: var(--dark-primary-bg);
+
+            --card-bg: var(--dark-secondary-bg);
+            --border-color: var(--dark-border-color);
+            --shadow-light: var(--dark-shadow);
+            --shadow-hover: var(--dark-shadow); /* Keep consistent */
+
+            --notice-bg: var(--dark-notice-bg);
+            --notice-text: var(--dark-notice-text);
+            --notice-border: var(--dark-notice-border);
+            --notice-icon: var(--dark-notice-icon);
+        }
+
+        /* --- Global Styles & Reset --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--off-white);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* --- Header --- */
+        .page-header {
+            width: 100%;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 20px 30px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            flex-shrink: 0;
+            z-index: 1000; /* High z-index to stay on top */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6em;
+            margin: 0;
+            flex-grow: 1;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .mode-toggle {
+            cursor: pointer;
+            font-size: 1.8em;
+            color: var(--white);
+            padding: 10px;
+            border-radius: 50%;
+            transition: background-color 0.2s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            outline: none; /* Remove default outline */
+        }
+        .mode-toggle:hover, .mode-toggle:focus {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: scale(1.1);
+        }
+        .mode-toggle i {
+            pointer-events: none; /* Ensure click goes to parent */
+        }
+
+        /* --- Footer --- */
+        .page-footer {
+            font-size: 0.85em;
+            padding: 15px 20px;
+            margin-top: auto;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 100;
+        }
+        .page-footer a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 500;
+            transition: text-decoration 0.2s;
+        }
+        .page-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Main Content Container --- */
+        .container {
+            width: 100%;
+            max-width: 1300px; /* Slightly wider container */
+            margin: 40px auto;
+            padding: 0 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px; /* Space between sections */
+        }
+
+        /* --- Notice Bar --- */
+        .notice {
+            background-color: var(--notice-bg);
+            color: var(--notice-text);
+            padding: 25px 35px;
+            border-radius: 12px;
+            font-size: 1.15em;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            width: 100%;
+            max-width: 850px; /* Slightly wider notice */
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            border: 1px solid var(--notice-border);
+            animation: fadeInScale 0.6s ease-out; /* Subtle animation */
+            line-height: 1.4;
+        }
+        .notice i {
+            font-size: 2em; /* Larger, more prominent icon */
+            color: var(--notice-icon);
+            min-width: 30px;
+        }
+        .notice a {
+            color: var(--notice-text);
+            text-decoration: underline;
+            font-weight: 700; /* Bolder link */
+            transition: color 0.2s ease;
+        }
+        .notice a:hover {
+            color: var(--text-dark); /* Darken link on hover */
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- Section Heading --- */
+        .section-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8em;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px; /* More space for underline */
+        }
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100px; /* Slightly longer underline */
+            height: 5px; /* Thicker underline */
+            background: linear-gradient(to right, var(--primary-blue-light), var(--primary-blue-dark)); /* Gradient underline */
+            border-radius: 3px;
+        }
+
+        /* --- Mock Test Grid --- */
+        .mock-test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Slightly wider min width */
+            gap: 30px;
+            width: 100%;
+            padding: 0;
+        }
+
+        /* --- Mock Test Card --- */
+        .mock-test-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-light);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 240px; /* Taller cards */
+            position: relative;
+            overflow: hidden;
+            will-change: transform, box-shadow; /* Optimize for animation */
+        }
+
+        .mock-test-card:hover {
+            transform: translateY(-12px); /* More pronounced lift */
+            box-shadow: var(--shadow-hover); /* Deeper shadow */
+            border-color: var(--primary-blue-light); /* Accent border on hover */
+        }
+
+        .mock-test-card .card-icon-wrapper {
+            background: linear-gradient(135deg, var(--primary-blue-light), var(--primary-blue-dark)); /* Gradient background for icon */
+            padding: 18px 20px; /* More padding */
+            border-radius: 50%;
+            margin-bottom: 20px; /* Space below icon */
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .mock-test-card:hover .card-icon-wrapper {
+            transform: scale(1.05); /* Slightly expand icon on hover */
+        }
+
+        .mock-test-card .card-icon {
+            font-size: 2.5em; /* Larger icon */
+            color: var(--white); /* White icon */
+            line-height: 1; /* Remove extra space */
+        }
+
+        .mock-test-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em; /* Larger, bolder title */
+            color: var(--primary-blue-dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        .mock-test-card:hover h3 {
+            color: var(--primary-blue); /* Change title color on hover */
+        }
+
+        .mock-test-card p {
+            font-size: 0.95em;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            background: linear-gradient(to right, var(--accent-green), var(--accent-green-dark)); /* Gradient button */
+            color: var(--white);
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease; /* Smooth transition for all properties */
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            cursor: pointer;
+            outline: none;
+        }
+
+        .btn:hover, .btn:focus {
+            background: linear-gradient(to right, var(--accent-green-light), var(--accent-green)); /* Lighter gradient on hover/focus */
+            transform: translateY(-4px); /* More lift */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* --- Coming Soon Card Specific Styles --- */
+        .mock-test-card.coming-soon {
+            opacity: 0.7; /* Slightly dim the card */
+            cursor: not-allowed; /* Indicate it's not clickable */
+            pointer-events: none; /* Disable all pointer events */
+            filter: grayscale(30%); /* Subtle grayscale effect */
+        }
+        .mock-test-card.coming-soon:hover {
+            transform: none; /* No lift on hover */
+            box-shadow: var(--shadow-light); /* No deeper shadow */
+            border-color: var(--border-color); /* No accent border */
+        }
+        .mock-test-card.coming-soon .card-icon-wrapper {
+            background: linear-gradient(135deg, #a0a8b0, #7a828b); /* Grey gradient for coming soon icon */
+            box-shadow: none;
+        }
+        .mock-test-card.coming-soon h3 {
+            color: var(--text-light); /* Muted title color */
+        }
+        .mock-test-card.coming-soon .btn {
+            background: #6c757d; /* Muted grey button */
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .mock-test-card.coming-soon .btn:hover {
+            background: #6c757d; /* Keep muted on hover */
+            transform: none;
+            box-shadow: none;
+        }
+        body.dark-mode .mock-test-card.coming-soon .card-icon-wrapper {
+            background: linear-gradient(135deg, #5a6b7e, #4a5a6b);
+        }
+        body.dark-mode .mock-test-card.coming-soon .btn {
+            background: #7f8c8d;
+        }
+
+        /* --- New Badge for Mock Test 1 --- */
+        .mock-test-card .new-badge {
+            position: absolute;
+            top: 0px; /* Adjust as needed */
+            right: 0px; /* Adjust as needed */
+            background-color: #ff4757; /* Bright red */
+            color: white;
+            padding: 8px 15px;
+            border-bottom-left-radius: 10px;
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
+            transform: rotate(0deg); /* No rotation for a cleaner look */
+            transform-origin: top right;
+            z-index: 10; /* Ensure it's above other content */
+            animation: pulse 1.5s infinite ease-in-out; /* Subtle pulsing animation */
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* --- Responsive Design (Mobile First) --- */
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 960px;
+            }
+            .section-heading {
+                font-size: 2.5em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 15px 20px;
+            }
+            .page-header h1 {
+                font-size: 1.3em;
+            }
+            .mode-toggle {
+                font-size: 1.6em;
+            }
+            .container {
+                margin: 30px auto;
+                padding: 0 15px;
+                gap: 30px;
+            }
+            .notice {
+                font-size: 1em;
+                padding: 20px 25px;
+                gap: 10px;
+            }
+            .notice i {
+                font-size: 1.8em;
+            }
+            .section-heading {
+                font-size: 2.2em;
+                padding-bottom: 10px;
+            }
+            .section-heading::after {
+                width: 80px;
+                height: 4px;
+            }
+            .mock-test-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust for smaller screens */
+                gap: 25px;
+            }
+            .mock-test-card {
+                padding: 25px;
+                min-height: 220px;
+            }
+            .mock-test-card .card-icon-wrapper {
+                padding: 15px 18px;
+                margin-bottom: 15px;
+            }
+            .mock-test-card .card-icon {
+                font-size: 2.2em;
+            }
+            .mock-test-card h3 {
+                font-size: 1.9em;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.98em;
+            }
+            .mock-test-card .new-badge {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.1em;
+            }
+            .mode-toggle {
+                font-size: 1.4em;
+                padding: 8px;
+            }
+            .container {
+                margin: 20px auto;
+                gap: 25px;
+            }
+            .notice {
+                font-size: 0.9em;
+                padding: 15px 20px;
+            }
+            .notice i {
+                font-size: 1.5em;
+            }
+            .section-heading {
+                font-size: 1.8em;
+            }
+            .section-heading::after {
+                width: 60px;
+                height: 3px;
+            }
+            .mock-test-grid {
+                grid-template-columns: 1fr; /* Single column on very small screens */
+                gap: 20px;
+            }
+            .mock-test-card {
+                padding: 20px;
+                min-height: 180px;
+            }
+            .mock-test-card .card-icon-wrapper {
+                padding: 12px 15px;
+                margin-bottom: 10px;
+            }
+            .mock-test-card .card-icon {
+                font-size: 1.8em;
+            }
+            .mock-test-card h3 {
+                font-size: 1.6em;
+            }
+            .mock-test-card p {
+                font-size: 0.85em;
+                margin-bottom: 20px;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+                gap: 8px;
+            }
+            .page-footer {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-header">
+        <h1>IBA Graduation BPS 5-15 Mock Test Series</h1>
+        <div class="mode-toggle" role="button" aria-label="Toggle Dark Mode" onclick="toggleDarkMode()">
+            <i class="fas fa-moon" id="mode-icon"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="notice" role="alert" aria-live="polite">
+            <i class="fas fa-triangle-exclamation"></i>
+            All mock tests are password protected. For passwords, please contact on WhatsApp: <a href="https://wa.me/923480358640" target="_blank" rel="noopener noreferrer">**+923480358640**</a>
+        </div>
+
+        <h2 class="section-heading">Select Your Mock Test</h2>
+
+        <div class="mock-test-grid">
+            <div class="mock-test-card" tabindex="0" role="link" onclick="window.location.href='graduation-quiz1.html'">
+                <div class="new-badge">New</div> <div class="card-icon-wrapper">
+                    <i class="fas fa-clipboard-question card-icon"></i>
+                </div>
+                <h3>Mock Test 1</h3>
+                <p>Start your comprehensive preparation with the first mock test, covering all key subjects.</p>
+                <a href="graduation-quiz1.html" class="btn" aria-label="Start Mock Test 1"><i class="fas fa-play-circle"></i> Start Test</a>
+            </div>
+
+            <div class="mock-test-card coming-soon" tabindex="-1" role="link">
+                <div class="card-icon-wrapper">
+                    <i class="fas fa-hourglass-half card-icon"></i> </div>
+                <h3>Mock Test 2</h3>
+                <p>This test is currently under development and will be available soon. Stay tuned!</p>
+                <a href="#" class="btn" aria-label="Mock Test 2 Coming Soon"><i class="fas fa-clock"></i> Coming Soon</a>
+            </div>
+
+            <div class="mock-test-card coming-soon" tabindex="-1" role="link">
+                <div class="card-icon-wrapper">
+                    <i class="fas fa-hourglass-half card-icon"></i>
+                </div>
+                <h3>Mock Test 3</h3>
+                <p>This test is currently under development and will be available soon. Stay tuned!</p>
+                <a href="#" class="btn" aria-label="Mock Test 3 Coming Soon"><i class="fas fa-clock"></i> Coming Soon</a>
+            </div>
+
+            <div class="mock-test-card coming-soon" tabindex="-1" role="link">
+                <div class="card-icon-wrapper">
+                    <i class="fas fa-hourglass-half card-icon"></i>
+                </div>
+                <h3>Mock Test 4</h3>
+                <p>This test is currently under development and will be available soon. Stay tuned!</p>
+                <a href="#" class="btn" aria-label="Mock Test 4 Coming Soon"><i class="fas fa-clock"></i> Coming Soon</a>
+            </div>
+
+            <div class="mock-test-card coming-soon" tabindex="-1" role="link">
+                <div class="card-icon-wrapper">
+                    <i class="fas fa-hourglass-half card-icon"></i>
+                </div>
+                <h3>Mock Test 5</h3>
+                <p>This test is currently under development and will be available soon. Stay tuned!</p>
+                <a href="#" class="btn" aria-label="Mock Test 5 Coming Soon"><i class="fas fa-clock"></i> Coming Soon</a>
+            </div>
+
+            <div class="mock-test-card coming-soon" tabindex="-1" role="link">
+                <div class="card-icon-wrapper">
+                    <i class="fas fa-hourglass-half card-icon"></i>
+                </div>
+                <h3>Mock Test 6</h3>
+                <p>This test is currently under development and will be available soon. Stay tuned!</p>
+                <a href="#" class="btn" aria-label="Mock Test 6 Coming Soon"><i class="fas fa-clock"></i> Coming Soon</a>
+            </div>
+
+            <div class="mock-test-card coming-soon" tabindex="-1" role="link">
+                <div class="card-icon-wrapper">
+                    <i class="fas fa-hourglass-half card-icon"></i>
+                </div>
+                <h3>Mock Test 7</h3>
+                <p>This test is currently under development and will be available soon. Stay tuned!</p>
+                <a href="#" class="btn" aria-label="Mock Test 7 Coming Soon"><i class="fas fa-clock"></i> Coming Soon</a>
+            </div>
+
+            <div class="mock-test-card coming-soon" tabindex="-1" role="link">
+                <div class="card-icon-wrapper">
+                    <i class="fas fa-hourglass-half card-icon"></i>
+                </div>
+                <h3>Mock Test 8</h3>
+                <p>This test is currently under development and will be available soon. Stay tuned!</p>
+                <a href="#" class="btn" aria-label="Mock Test 8 Coming Soon"><i class="fas fa-clock"></i> Coming Soon</a>
+            </div>
+
+            <div class="mock-test-card coming-soon" tabindex="-1" role="link">
+                <div class="card-icon-wrapper">
+                    <i class="fas fa-hourglass-half card-icon"></i>
+                </div>
+                <h3>Mock Test 9</h3>
+                <p>This test is currently under development and will be available soon. Stay tuned!</p>
+                <a href="#" class="btn" aria-label="Mock Test 9 Coming Soon"><i class="fas fa-clock"></i> Coming Soon</a>
+            </div>
+
+            <div class="mock-test-card coming-soon" tabindex="-1" role="link">
+                <div class="card-icon-wrapper">
+                    <i class="fas fa-hourglass-half card-icon"></i>
+                </div>
+                <h3>Mock Test 10</h3>
+                <p>This test is currently under development and will be available soon. Stay tuned!</p>
+                <a href="#" class="btn" aria-label="Mock Test 10 Coming Soon"><i class="fas fa-clock"></i> Coming Soon</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        2025  &copy; Graduation Mock Test Series Powered By <a href="https://mock-test-hub.netlify.app" target="_blank" rel="noopener noreferrer">Mock Test Hub</a>
+    </div>
+
+<script>
+    const modeIcon = document.getElementById('mode-icon');
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadDarkModePreference();
+    });
+
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        if (isDarkMode) {
+            modeIcon.classList.remove('fa-moon');
+            modeIcon.classList.add('fa-sun');
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            modeIcon.classList.remove('fa-sun');
+            modeIcon.classList.add('fa-moon');
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    }
+
+    function loadDarkModePreference() {
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            modeIcon.classList.remove('fa-moon');
+            modeIcon.classList.add('fa-sun');
+        } else {
+            modeIcon.classList.remove('fa-sun');
+            modeIcon.classList.add('fa-moon');
+        }
+    }
+</script>
+</body>
+</html>
