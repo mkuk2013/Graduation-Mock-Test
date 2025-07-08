@@ -4,81 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IBA Graduation Mock Test</title>
-    <!-- Corrected CDN links by removing markdown formatting -->
+    <!-- Corrected CDN links -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* --- Base Variables & Reset --- */
         :root {
-            /* Light Mode Colors - Professional Palette */
-            --primary-color: #007bff; /* IBM Blue - Main actions, header */
-            --primary-dark: #0056b3;
-            --secondary-color: #6c757d; /* Muted Grey - Secondary actions */
-            --secondary-dark: #5a6268;
-            --accent-color: #28a745; /* Success Green - Correct, answered, progress */
-            --accent-dark: #218838;
-            --warning-color: #ffc107; /* Caution Yellow - Not attempted, flagged */
-            --danger-color: #dc3545; /* Error Red - Incorrect, time low */
+            /* New Vibrant & Professional Palette */
+            --primary-color: #5A67D8; /* Indigo Blue */
+            --primary-dark: #434190;
+            --secondary-color: #48BB78; /* Emerald Green */
+            --secondary-dark: #38A169;
+            --accent-color: #F6AD55; /* Warm Orange */
+            --accent-dark: #ED8936;
+            --warning-color: #ECC94B; /* Yellow */
+            --danger-color: #F56565; /* Red */
 
-            --text-color: #343a40; /* Dark Grey - Main text */
-            --light-text-color: #6c757d; /* Muted Grey - Sub-text, placeholders */
-            --bg-color: #f0f2f5; /* Light Grey - Overall background */
-            --card-bg: #ffffff; /* Pure White - Card backgrounds */
-            --border-color: #e0e6ed; /* Light Blue-Grey - Borders */
-            --shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Soft, diffused shadow */
-            --border-radius: 12px;
-            --input-bg: #ffffff;
-            --hover-bg-light: rgba(0, 0, 0, 0.03);
+            --text-color: #2D3748; /* Dark Grey */
+            --light-text-color: #718096; /* Muted Grey */
+            --bg-color: #F7FAFC; /* Light Grey-Blue background */
+            --card-bg: #FFFFFF; /* Pure White card background */
+            --border-color: #E2E8F0; /* Light border */
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Enhanced, softer shadow */
+            --border-radius: 16px; /* More rounded */
+            --input-bg: #FFFFFF;
+            --hover-bg-light: rgba(0, 0, 0, 0.05);
 
-            /* Calculator/Scratchpad - ADJUSTED FOR IMAGE LAYOUT */
-            --calc-bg: #4c4c4c; /* Darker background for calculator body */
-            --calc-border: #333;
-            --calc-btn-bg: #808080; /* Grey buttons */
-            --calc-btn-hover: #999999;
-            --calc-btn-operator-bg: #f2a22c; /* Orange operator buttons */
-            --calc-btn-operator-hover: #e09428;
-            --calc-btn-clear-bg: #666666; /* Specific color for AC, +/-, % */
-            --calc-btn-clear-hover: #777777;
-            --calc-display-bg: #333333; /* Dark display background */
-            --calc-display-text: white; /* White text on dark display */
-            --scratchpad-bg: #fcfcfc;
-            --scratchpad-border: #d0d0d0;
+            /* Calculator/Scratchpad - Adjusted for new palette */
+            --calc-bg: #2D3748; /* Dark Grey */
+            --calc-border: #1A202C;
+            --calc-btn-bg: #4A5568; /* Medium Grey */
+            --calc-btn-hover: #606F82;
+            --calc-btn-operator-bg: var(--accent-color); /* Orange */
+            --calc-btn-operator-hover: var(--accent-dark);
+            --calc-btn-clear-bg: #2C5282; /* Darker Blue */
+            --calc-btn-clear-hover: #2B6CB0;
+            --calc-display-bg: #1A202C; /* Very Dark Grey */
+            --calc-display-text: white;
+            --scratchpad-bg: #FFFFFF;
+            --scratchpad-border: #E2E8F0;
         }
 
-        /* Dark Mode Variables - Professional Palette */
+        /* Dark Mode Variables - New Palette */
         body.dark-mode {
-            --primary-color: #7abaff; /* Lighter Blue - Main actions, header */
-            --primary-dark: #5c9ceb;
-            --secondary-color: #adb5bd; /* Lighter Grey - Secondary actions */
-            --secondary-dark: #9da7b3;
-            --accent-color: #4cd180; /* Brighter Green - Correct, answered, progress */
-            --accent-dark: #3aa86a;
-            --warning-color: #ffc107; /* Keep Yellow */
-            --danger-color: #ff6b6b; /* Softer Red */
+            --primary-color: #7F9CF5; /* Lighter Indigo */
+            --primary-dark: #667EEA;
+            --secondary-color: #68D391; /* Lighter Emerald */
+            --secondary-dark: #48BB78;
+            --accent-color: #FBD38D; /* Lighter Orange */
+            --accent-dark: #F6AD55;
+            --warning-color: #F6E05E; /* Lighter Yellow */
+            --danger-color: #FC8181; /* Lighter Red */
 
-            --text-color: #e0e6ed; /* Light Blue-Grey - Main text */
-            --light-text-color: #adb5bd; /* Muted Light Grey - Sub-text, placeholders */
-            --bg-color: #2c3e50; /* Dark Blue-Grey - Overall background */
-            --card-bg: #34495e; /* Darker Blue-Grey - Card backgrounds */
-            --border-color: #4a657e; /* Slightly Lighter Dark Blue-Grey - Borders */
-            --shadow: 0 6px 20px rgba(0, 0, 0, 0.25); /* More prominent shadow */
-            --input-bg: #4a657e;
-            --hover-bg-light: rgba(255, 255, 255, 0.08);
+            --text-color: #E2E8F0; /* Light Grey */
+            --light-text-color: #A0AEC0; /* Muted light grey */
+            --bg-color: #1A202C; /* Very Dark Blue-Grey background */
+            --card-bg: #2D3748; /* Dark Blue-Grey card background */
+            --border-color: #4A5568; /* Darker border */
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* More prominent shadow */
+            --input-bg: #4A5568;
+            --hover-bg-light: rgba(255, 255, 255, 0.1);
 
             /* Calculator/Scratchpad Dark Mode - Match overall dark theme, keep calc distinct */
-            --calc-bg: #4c4c4c; /* Keep dark calc background for consistency with image */
-            --calc-border: #333;
-            --calc-btn-bg: #808080;
-            --calc-btn-hover: #999999;
-            --calc-btn-operator-bg: #f2a22c;
-            --calc-btn-operator-hover: #e09428;
-            --calc-btn-clear-bg: #666666;
-            --calc-btn-clear-hover: #777777;
-            --calc-display-bg: #333333;
+            --calc-bg: #2D3748;
+            --calc-border: #1A202C;
+            --calc-btn-bg: #4A5568;
+            --calc-btn-hover: #606F82;
+            --calc-btn-operator-bg: var(--accent-color);
+            --calc-btn-operator-hover: var(--accent-dark);
+            --calc-btn-clear-bg: #2C5282;
+            --calc-btn-clear-hover: #2B6CB0;
+            --calc-display-bg: #1A202C;
             --calc-display-text: white;
-            --scratchpad-bg: #213547;
-            --scratchpad-border: #4a657e;
+            --scratchpad-bg: #2D3748;
+            --scratchpad-border: #4A5568;
         }
 
         * {
@@ -88,7 +88,7 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             display: flex;
@@ -102,15 +102,15 @@
         /* --- Global Header & Footer --- */
         .page-header {
             width: 100%;
-            background-color: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 15px 30px;
+            padding: 20px 40px;
             text-align: center;
-            font-weight: 600;
-            font-size: 1.3em;
+            font-weight: 700;
+            font-size: 1.4em;
             box-shadow: var(--shadow);
             flex-shrink: 0;
-            z-index: 100; /* Ensure it's above everything */
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -119,36 +119,36 @@
             border-bottom: 1px solid rgba(255,255,255,0.2);
         }
         .page-header h1 {
-            font-size: 1.3em;
+            font-size: 1.4em;
             margin: 0;
             flex-grow: 1;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         .mode-toggle {
             cursor: pointer;
-            font-size: 1.6em;
+            font-size: 1.7em;
             color: white;
-            padding: 8px;
+            padding: 10px;
             border-radius: 50%;
-            transition: background-color 0.2s, transform 0.2s;
+            transition: background-color 0.3s, transform 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .mode-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.25);
             transform: scale(1.1);
         }
         .mode-toggle i {
             pointer-events: none;
         }
         .page-footer {
-            font-size: 0.85em;
-            padding: 12px 20px;
+            font-size: 0.9em;
+            padding: 15px 20px;
             margin-top: auto;
-            background-color: var(--primary-color);
+            background-color: var(--primary-dark);
             color: white;
-            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
             text-align: center;
         }
         .page-footer a {
@@ -163,20 +163,21 @@
         /* --- Main Container --- */
         .container {
             width: 100%;
-            max-width: 1000px; /* Wider container for more content */
+            max-width: 1100px; /* Slightly wider */
             background-color: var(--card-bg);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             overflow: hidden;
-            margin: 25px auto;
+            margin: 30px auto;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            border: 1px solid var(--border-color); /* Subtle border */
         }
 
         /* --- Common Screen Styling --- */
         .screen {
-            padding: 40px;
+            padding: 50px; /* More padding */
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -185,30 +186,32 @@
             text-align: center;
         }
         .screen h2 {
-            margin-bottom: 25px;
-            font-size: 2.2em;
+            margin-bottom: 30px;
+            font-size: 2.5em;
             color: var(--primary-color);
-            font-weight: 700;
+            font-weight: 800;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
         }
         .screen p {
-            font-size: 1.1em;
+            font-size: 1.15em;
             color: var(--light-text-color);
-            margin-bottom: 30px;
-            line-height: 1.6;
+            margin-bottom: 35px;
+            line-height: 1.7;
+            max-width: 700px;
         }
 
         /* --- Password Screen --- */
         #password-screen .input-group {
             position: relative;
-            margin-bottom: 25px;
-            width: 85%;
-            max-width: 400px;
+            margin-bottom: 30px;
+            width: 90%;
+            max-width: 450px;
         }
         #password-input {
             width: 100%;
-            padding: 14px 45px 14px 20px;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
+            padding: 16px 50px 16px 25px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
             font-size: 1.1em;
             background-color: var(--input-bg);
             color: var(--text-color);
@@ -217,16 +220,16 @@
         #password-input:focus {
             border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.25);
+            box-shadow: 0 0 0 5px rgba(90, 103, 216, 0.3); /* Primary color based shadow */
         }
         .toggle-password {
             position: absolute;
-            right: 18px;
+            right: 20px;
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
             color: var(--light-text-color);
-            font-size: 1.1em;
+            font-size: 1.2em;
             transition: color 0.2s;
         }
         .toggle-password:hover {
@@ -238,15 +241,33 @@
             text-align: left;
         }
         #instructions-screen ul {
-            list-style: disc;
-            margin-left: 25px;
-            margin-bottom: 30px;
+            list-style: none; /* Remove default bullets */
+            margin-left: 0;
+            padding-left: 0;
+            margin-bottom: 40px;
             color: var(--text-color);
+            max-width: 800px;
         }
         #instructions-screen ul li {
-            margin-bottom: 10px;
-            font-size: 1.05em;
-            line-height: 1.5;
+            display: flex; /* Use flexbox for alignment */
+            align-items: flex-start; /* Align items to the start of the cross axis (top for row direction) */
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        #instructions-screen ul li::before {
+            content: '\f058'; /* FontAwesome check-circle icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-right: 10px; /* Space between icon and text */
+            color: var(--secondary-color); /* Green checkmark */
+            font-size: 1.2em;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            display: inline-flex; /* Use inline-flex for pseudo-element to center content */
+            justify-content: center;
+            align-items: center;
+            width: 20px; /* Give it a fixed width */
+            height: 20px; /* Give it a fixed height */
         }
         #instructions-screen .btn {
             margin-top: 20px;
@@ -263,153 +284,196 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 30px;
+            padding: 20px 40px;
             background-color: var(--bg-color);
             border-bottom: 1px solid var(--border-color);
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
         }
         #question-counter, #timer {
-            font-weight: 600;
-            font-size: 1.15em;
-            background-color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.2em;
+            background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
             color: white;
-            padding: 10px 18px;
+            padding: 12px 22px;
             border-radius: 30px;
-            min-width: 140px;
+            min-width: 160px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transition: background-color 0.3s;
         }
         #timer.time-low {
-            background-color: var(--danger-color);
+            background: linear-gradient(45deg, var(--danger-color), #D64545);
         }
 
         /* Progress Bar */
         .progress-container {
             width: 100%;
             background-color: var(--border-color);
-            height: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
+            height: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
             overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.08);
         }
         .progress-bar {
             height: 100%;
             width: 0%;
-            background-color: var(--accent-color);
-            border-radius: 5px;
-            transition: width 0.4s ease-out;
+            background: linear-gradient(90deg, var(--secondary-color), var(--secondary-dark));
+            border-radius: 6px;
+            transition: width 0.5s ease-out;
         }
 
         .test-body {
-            padding: 30px;
+            padding: 40px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
         #question-container {
-            font-size: 1.4em;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            font-weight: 500;
+            font-size: 1.5em;
+            margin-bottom: 35px;
+            line-height: 1.7;
+            font-weight: 600;
             color: var(--text-color);
+        }
+        .reading-passage {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .reading-passage h3 {
+            color: var(--primary-color);
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .reading-passage p {
+            font-size: 1em;
+            line-height: 1.8;
+            color: var(--light-text-color);
+            margin-bottom: 0; /* Override default p margin */
         }
         .options-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 18px;
         }
         .option {
-            padding: 16px 22px;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
+            padding: 18px 25px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
             cursor: pointer;
             transition: background-color 0.2s, border-color 0.2s, transform 0.1s, box-shadow 0.2s;
             font-size: 1.15em;
             text-align: left;
             background-color: var(--card-bg);
             color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .option::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--light-text-color);
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            transition: all 0.2s;
+            flex-shrink: 0;
         }
         .option:hover {
             background-color: var(--hover-bg-light);
             border-color: var(--primary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
         .option.selected {
             background-color: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+        .option.selected::before {
+            background-color: white;
+            border-color: white;
+            box-shadow: 0 0 0 4px var(--primary-color);
         }
         body.dark-mode .option.selected {
-            color: var(--card-bg); /* White text on selected option in dark mode */
+            color: var(--card-bg);
+        }
+        body.dark-mode .option.selected::before {
+            box-shadow: 0 0 0 4px var(--primary-color);
         }
 
         .test-footer {
             display: flex;
             justify-content: space-between;
-            align-items: center; /* Align items vertically */
-            padding: 25px 30px;
+            align-items: center;
+            padding: 30px 40px;
             border-top: 1px solid var(--border-color);
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 25px;
             background-color: var(--bg-color);
         }
         .test-footer .left-controls, .test-footer .right-controls {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
         /* Flag Button - Updated styling */
         .btn-flag {
-            background-color: var(--card-bg); /* White background */
-            color: var(--primary-color); /* Primary blue text */
-            border: 1px solid var(--primary-color); /* Blue border */
-            padding: 10px 15px;
-            font-size: 0.95em;
+            background-color: var(--card-bg);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 12px 20px;
+            font-size: 1em;
             box-shadow: none;
             transition: background-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
         }
         .btn-flag:hover {
-            background-color: var(--primary-color); /* Darker blue on hover */
-            color: white; /* White text on hover */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
         }
         .btn-flag.flagged {
             background-color: var(--warning-color);
-            color: var(--text-color); /* Dark text on yellow for contrast */
+            color: var(--text-color);
             border-color: var(--warning-color);
-            box-shadow: 0 2px 5px rgba(255,193,7,0.3);
+            box-shadow: 0 2px 8px rgba(255,193,7,0.4);
         }
         body.dark-mode .btn-flag.flagged {
-            color: #333; /* Dark text on orange in dark mode */
+            color: #333;
         }
 
         /* Submit Button Style */
         .btn-submit {
-            background-color: var(--accent-color); /* Green for submit */
+            background: linear-gradient(45deg, var(--secondary-color), var(--secondary-dark));
             color: white;
             border: none;
-            padding: 14px 35px;
+            padding: 16px 40px;
             border-radius: var(--border-radius);
             cursor: pointer;
-            font-size: 1.05em;
+            font-size: 1.1em;
             font-weight: 600;
-            transition: all 0.25s ease-in-out;
+            transition: all 0.3s ease-in-out;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
         }
         .btn-submit:hover {
-            background-color: var(--accent-dark); /* Darker green on hover */
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            background: linear-gradient(45deg, var(--secondary-dark), #38A169);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
         .btn-submit:active {
             transform: translateY(0);
@@ -418,48 +482,60 @@
 
         /* --- Question Palette --- */
        #question-palette {
-            display: flex; /* Changed from grid to flex */
-            flex-wrap: nowrap; /* Ensures all buttons stay in one row */
-            overflow-x: auto; /* Enables horizontal scrolling */
-            gap: 12px;
-            padding: 25px 30px;
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 30px 40px;
             border-top: 1px solid var(--border-color);
             background-color: var(--bg-color);
-            /* Removed: grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); */
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) transparent;
+        }
+        #question-palette::-webkit-scrollbar {
+            height: 8px;
+        }
+        #question-palette::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 4px;
+        }
+        #question-palette::-webkit-scrollbar-track {
+            background-color: var(--border-color);
         }
 
         .palette-btn {
-            width: 50px;
-            height: 50px;
-            flex-shrink: 0; /* Prevents buttons from shrinking */
+            width: 55px;
+            height: 55px;
+            flex-shrink: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: var(--border-radius);
+            border-radius: 12px;
             background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
             transition: background-color 0.2s, border-color 0.2s, transform 0.1s, box-shadow 0.2s;
             color: var(--text-color);
-            font-size: 1.05em;
+            font-size: 1.1em;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
         }
         .palette-btn:hover {
             background-color: var(--hover-bg-light);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
         .palette-btn.current {
-            background-color: var(--primary-color);
+            background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
             color: white;
             border-color: var(--primary-color);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.25);
-            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: scale(1.08);
         }
         .palette-btn.answered {
-            background-color: var(--accent-color);
+            background-color: var(--secondary-color);
             color: white;
-            border-color: var(--accent-color);
+            border-color: var(--secondary-color);
         }
         .palette-btn.not-answered {
             background-color: var(--warning-color);
@@ -471,21 +547,22 @@
         }
         .palette-btn.flagged {
             position: relative;
-            box-shadow: 0 0 0 3px var(--danger-color); /* Red border for flagged */
+            box-shadow: 0 0 0 4px var(--danger-color); /* Red border for flagged */
         }
         .palette-btn.flagged::after {
             content: '\f024'; /* Flag icon */
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
             position: absolute;
-            top: 2px;
-            right: 2px;
-            font-size: 0.7em;
+            top: 4px;
+            right: 4px;
+            font-size: 0.8em;
             color: var(--danger-color);
             background-color: var(--card-bg);
             border-radius: 50%;
-            padding: 2px;
+            padding: 3px;
             line-height: 1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
         body.dark-mode .palette-btn.flagged::after {
             background-color: var(--card-bg);
@@ -494,154 +571,196 @@
 
         /* --- Result Screen --- */
         #result-screen {
-            padding: 40px;
+            padding: 50px;
             text-align: center;
         }
         #result-summary {
-            margin-bottom: 40px;
-            padding: 30px;
+            margin-bottom: 50px;
+            padding: 40px;
             border-radius: var(--border-radius);
             background-color: var(--bg-color);
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.08);
             border: 1px solid var(--border-color);
+            width: 100%; /* Added this line */
         }
         #result-summary h2 {
             margin-top: 0;
             color: var(--primary-color);
         }
         .score-circle {
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            background: linear-gradient(45deg, var(--accent-color), var(--accent-dark));
+            background: linear-gradient(45deg, var(--secondary-color), var(--secondary-dark));
             color: white;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             margin: auto;
-            margin-bottom: 25px;
-            font-weight: 600;
+            margin-bottom: 30px;
+            font-weight: 700;
             box-shadow: var(--shadow);
         }
         .score-circle span:first-child {
-            font-size: 4em;
-            font-weight: 700;
+            font-size: 4.5em;
+            font-weight: 800;
+            line-height: 1;
         }
         .score-circle span:last-child {
-            font-size: 1.2em;
+            font-size: 1.3em;
+            margin-top: 5px;
         }
         .score-details {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 30px;
-            flex-wrap: wrap;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
         }
         .score-details div {
-            flex-basis: 48%;
-            padding: 15px;
+            padding: 20px;
             background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             border: 1px solid var(--border-color);
         }
         .score-details p {
             margin: 0;
-            font-size: 1.05em;
+            font-size: 1.1em;
         }
         .score-details p:first-child {
             color: var(--light-text-color);
             font-weight: 500;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
         .score-details p:last-child {
-            font-weight: 600;
-            font-size: 1.2em;
+            font-weight: 700;
+            font-size: 1.3em;
+            color: var(--primary-color);
         }
+        .score-details div:nth-child(3) p:last-child { color: var(--secondary-color); } /* Correct */
+        .score-details div:nth-child(4) p:last-child { color: var(--danger-color); } /* Incorrect */
 
 
         .result-question {
-            margin-bottom: 25px;
-            padding: 20px;
+            margin-bottom: 30px;
+            padding: 25px;
             border-radius: var(--border-radius);
             border: 1px solid var(--border-color);
             text-align: left;
             background-color: var(--card-bg);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .result-question p {
             font-weight: 600;
-            margin-bottom: 12px;
-            font-size: 1.1em;
-            line-height: 1.5;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            line-height: 1.6;
             color: var(--text-color);
         }
         .result-option {
-            margin-left: 25px;
-            margin-bottom: 8px;
-            font-size: 1em;
-            color: var(--light-text-color);
+            margin-bottom: 10px;
+            font-size: 1.05em;
+            color: var(--light-text-color); /* Default color for options */
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Vertically center items */
+            gap: 10px; /* Space between icon and text */
         }
-        .correct {
-            color: var(--accent-color);
-            font-weight: 600;
+        .result-option::before {
+            content: '';
+            display: inline-block; /* Make it take space in flex layout */
+            width: 20px; /* Fixed width for consistent icon alignment */
+            height: 20px; /* Fixed height for consistent icon alignment */
+            border-radius: 50%; /* For the default dot */
+            background-color: var(--light-text-color); /* For the default dot */
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            text-align: center; /* Center Font Awesome icons within its box */
+            line-height: 20px; /* Vertically center Font Awesome icons */
+            font-size: 1.1em; /* Adjust font size for icons */
         }
-        .incorrect {
-            color: var(--danger-color);
+        /* Correct option styling */
+        .result-option.correct {
+            color: var(--secondary-color); /* Green text for correct options */
+            font-weight: 700;
         }
-        .user-answer.correct::before {
-            content: '✓ Your Answer: ';
-            color: var(--accent-color);
-            font-weight: 600;
+        .result-option.correct::before {
+            content: '\f058'; /* Check circle */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            background: none; /* Remove background circle */
+            color: var(--secondary-color); /* Ensure green color */
         }
-        .user-answer.incorrect::before {
-            content: '✗ Your Answer: ';
-            color: var(--danger-color);
-            font-weight: 600;
+        /* Incorrect option styling (user's selected incorrect answer) */
+        .result-option.incorrect.user-answer {
+            color: var(--danger-color); /* Red text for incorrect options */
+            font-weight: 700;
+        }
+        .result-option.incorrect.user-answer::before {
+            content: '\f057'; /* Times circle */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            background: none;
+            color: var(--danger-color); /* Ensure red color */
+        }
+        /* User's selected correct answer (will also have .correct class) */
+        .result-option.user-answer.correct::before {
+            content: '\f058'; /* Check circle */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            background: none;
+            color: var(--secondary-color); /* Ensure green color */
         }
         .not-attempted-text {
             color: var(--light-text-color);
             font-style: italic;
-            margin-left: 25px;
-            margin-top: 10px;
+            margin-left: 30px;
+            margin-top: 15px;
+            font-size: 0.95em;
         }
 
         /* --- Buttons --- */
         .btn {
-            padding: 14px 35px;
+            padding: 16px 40px;
             border: none;
-            border-radius: var(--border-radius);
+            border-radius: 12px;
             cursor: pointer;
             font-size: 1.05em;
             font-weight: 600;
-            transition: all 0.25s ease-in-out;
+            transition: all 0.3s ease-in-out;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
         }
         .btn:active {
             transform: translateY(0);
             box-shadow: none;
         }
         .btn-primary {
-            background-color: var(--primary-color);
+            background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
             color: white;
         }
         .btn-primary:hover {
-            background-color: var(--primary-dark);
+            background: linear-gradient(45deg, var(--primary-dark), #434190);
         }
         .btn-secondary {
-            background-color: var(--secondary-color);
+            background-color: var(--light-text-color);
             color: white;
         }
         .btn-secondary:hover {
-            background-color: var(--secondary-dark);
+            background-color: #5A67D8; /* A darker shade of primary for secondary hover */
+        }
+        .btn-danger {
+            background: linear-gradient(45deg, var(--danger-color), #D64545);
+            color: white;
+        }
+        .btn-danger:hover {
+            background: linear-gradient(45deg, #D64545, #C53030);
         }
 
         /* Result screen controls */
@@ -649,66 +768,70 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 25px;
+            margin-bottom: 40px;
             padding: 0 20px;
         }
 
         /* --- Modals (Confirmation Popups) --- */
         .modal {
-            /* Removed display: none from here */
             position: fixed;
             z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            display: flex; /* Set default display to flex */
+            background-color: rgba(0,0,0,0.75);
+            display: flex;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
+            animation: fadeInOverlay 0.3s ease-out;
         }
-        .modal.hidden { /* This class will control visibility */
+        .modal.hidden {
             display: none !important;
         }
         .modal-content {
             background-color: var(--card-bg);
-            padding: 40px;
+            padding: 45px;
             border-radius: var(--border-radius);
             width: 90%;
-            max-width: 500px;
+            max-width: 550px;
             box-shadow: var(--shadow);
             text-align: center;
             position: relative;
-            animation: fadeIn 0.4s ease-out;
+            animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Springy animation */
             border: 1px solid var(--border-color);
         }
         .modal-content h3 {
-            margin-bottom: 25px;
+            margin-bottom: 28px;
             color: var(--primary-color);
-            font-size: 1.8em;
-            font-weight: 700;
+            font-size: 2em;
+            font-weight: 800;
         }
         .modal-content p {
-            font-size: 1.1em;
-            line-height: 1.5;
+            font-size: 1.15em;
+            line-height: 1.6;
             color: var(--text-color);
         }
         .modal-buttons {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-top: 30px;
+            margin-top: 35px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-40px) scale(0.95); }
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-100px) scale(0.8); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         /* Review Summary Modal */
         #review-summary-modal .modal-content {
-            max-width: 700px;
+            max-width: 750px;
             text-align: left;
         }
         #review-summary-modal h3 {
@@ -716,29 +839,31 @@
         }
         #review-summary-modal .summary-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
         #review-summary-modal .summary-item {
             background-color: var(--bg-color);
-            padding: 15px;
-            border-radius: var(--border-radius);
+            padding: 20px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
         }
         #review-summary-modal .summary-item strong {
             display: block;
-            font-size: 1.5em;
-            margin-bottom: 5px;
+            font-size: 1.8em;
+            margin-bottom: 8px;
             color: var(--primary-color);
+            font-weight: 700;
         }
         #review-summary-modal .summary-item span {
             color: var(--light-text-color);
-            font-size: 0.95em;
+            font-size: 1em;
         }
         #review-summary-modal .summary-item.answered strong {
-            color: var(--accent-color);
+            color: var(--secondary-color);
         }
         #review-summary-modal .summary-item.not-answered strong {
             color: var(--warning-color);
@@ -764,28 +889,28 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.85);
+            background-color: rgba(0,0,0,0.9);
             z-index: 2000;
             display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 1.3em;
-            backdrop-filter: blur(8px);
+            font-size: 1.4em;
+            backdrop-filter: blur(10px);
         }
         .spinner {
-            border: 8px solid rgba(255,255,255,0.2);
-            border-top: 8px solid var(--primary-color);
+            border: 10px solid rgba(255,255,255,0.2);
+            border-top: 10px solid var(--primary-color);
             border-radius: 50%;
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             animation: spin 1s linear infinite;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         #loading-overlay p {
             color: white;
-            font-weight: 500;
+            font-weight: 600;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -795,31 +920,31 @@
         /* --- Floating Tools (Calculator & Scratchpad) --- */
         .floating-tool-trigger {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--primary-color);
+            bottom: 25px;
+            right: 25px;
+            background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
             color: white;
-            width: 55px;
-            height: 55px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.8em;
+            font-size: 2em;
             cursor: pointer;
             box-shadow: var(--shadow);
             transition: background-color 0.3s, transform 0.3s;
-            z-index: 999; /* Below modals, above test content */
+            z-index: 999;
         }
         .floating-tool-trigger:hover {
-            background-color: var(--primary-dark);
-            transform: scale(1.05);
+            background: linear-gradient(45deg, var(--primary-dark), #434190);
+            transform: scale(1.1);
         }
         .floating-tool-container {
             position: fixed;
-            background-color: var(--calc-bg); /* Use calc-bg */
+            background-color: var(--calc-bg);
             border: 1px solid var(--calc-border);
-            border-radius: var(--border-radius);
+            border-radius: 20px; /* Specific for tools */
             box-shadow: var(--shadow);
             z-index: 998;
             overflow: hidden;
@@ -830,45 +955,43 @@
             left: 50%;
             transform: translate(-50%, -50%);
             cursor: grab;
+            min-width: 320px; /* Ensure minimum size */
+            min-height: 200px;
         }
         .floating-tool-container.hidden {
             display: none !important;
         }
         .floating-tool-header {
-            background-color: var(--calc-display-bg); /* Darker header like display */
+            background-color: var(--calc-display-bg);
             color: var(--calc-display-text);
-            padding: 10px 15px;
-            border-top-left-radius: var(--border-radius);
-            border-top-right-radius: var(--border-radius);
+            padding: 12px 20px;
+            border-top-left-radius: 18px; /* Match container border-radius -2px */
+            border-top-right-radius: 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 500;
-            font-size: 1.1em;
+            font-weight: 600;
+            font-size: 1.2em;
             cursor: grab;
         }
         .floating-tool-header .close-btn {
             background: none;
             border: none;
             color: white;
-            font-size: 1.2em;
+            font-size: 1.3em;
             cursor: pointer;
             padding: 5px;
             transition: transform 0.2s;
         }
         .floating-tool-header .close-btn:hover {
-            transform: scale(1.2);
+            transform: scale(1.3);
         }
 
-        /* Calculator Specific Styles - REVISED FOR IMAGE LAYOUT */
+        /* Calculator Specific Styles */
         #calculator-tool {
-            width: 320px; /* Fixed width as per common calculator layouts */
-            height: 500px; /* Adjusted height for 5 rows of buttons + display */
-            min-width: 320px;
-            min-height: 480px;
+            width: 340px; /* Slightly wider */
+            height: 520px; /* Slightly taller */
             resize: none;
-            border-radius: 20px; /* More rounded corners for the calculator body */
-            overflow: hidden;
         }
 
         #calculator {
@@ -880,23 +1003,23 @@
         #calculator .display {
             background-color: var(--calc-display-bg);
             color: var(--calc-display-text);
-            font-size: 3.5em; /* Larger font for display */
+            font-size: 3.8em; /* Larger font */
             text-align: right;
-            padding: 20px;
-            flex-shrink: 0; /* Don't shrink the display */
+            padding: 25px;
+            flex-shrink: 0;
             overflow-x: auto;
             white-space: nowrap;
             scrollbar-width: thin;
             scrollbar-color: var(--primary-color) transparent;
-            border-top-left-radius: 20px; /* Match container border radius */
-            border-top-right-radius: 20px; /* Match container border radius */
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
         }
         #calculator .display::-webkit-scrollbar {
-            height: 6px;
+            height: 8px;
         }
         #calculator .display::-webkit-scrollbar-thumb {
             background-color: var(--primary-color);
-            border-radius: 3px;
+            border-radius: 4px;
         }
         #calculator .display::-webkit-scrollbar-track {
             background-color: transparent;
@@ -904,26 +1027,26 @@
 
         #calculator .buttons {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-            grid-template-rows: repeat(5, 1fr); /* 5 equal rows */
-            gap: 1px; /* Subtle grid lines */
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 2px;
             flex-grow: 1;
-            background-color: var(--calc-border); /* Grid lines color */
-            padding-top: 1px; /* Top padding for grid lines */
+            background-color: var(--calc-border);
+            padding-top: 2px;
         }
 
         #calculator .button {
             background-color: var(--calc-btn-bg);
             color: var(--calc-display-text);
             border: none;
-            font-size: 1.8em; /* Larger button text */
+            font-size: 2em;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             transition: background-color 0.2s, transform 0.1s;
-            user-select: none; /* Prevent text selection */
-            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         #calculator .button:hover {
@@ -951,193 +1074,351 @@
         }
 
         #calculator .button.zero {
-            grid-column: span 2; /* Make zero button span two columns */
-            border-bottom-left-radius: 19px; /* Rounded corners for the actual buttons */
+            grid-column: span 2;
+            border-bottom-left-radius: 18px;
         }
-        #calculator .button:nth-child(4n) { /* Rightmost buttons */
-            border-bottom-right-radius: 0;
-        }
-        #calculator .button:nth-last-child(1) { /* Equal button */
-            border-bottom-right-radius: 19px;
+        #calculator .button:nth-last-child(1) {
+            border-bottom-right-radius: 18px;
         }
 
 
         /* Scratchpad Specific Styles */
         #scratchpad-tool {
-            width: 400px;
-            height: 300px;
-            min-width: 300px;
-            min-height: 200px;
-            resize: both; /* Allow resizing in all directions */
+            width: 450px;
+            height: 350px;
+            resize: both;
             display: flex;
             flex-direction: column;
-            border-radius: var(--border-radius);
+            border-radius: 20px;
             background-color: var(--scratchpad-bg);
             border: 1px solid var(--scratchpad-border);
         }
         #scratchpad-tool .floating-tool-header {
-            background-color: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
             border-bottom: 1px solid var(--primary-dark);
         }
         body.dark-mode #scratchpad-tool .floating-tool-header {
-            background-color: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
             border-bottom: 1px solid var(--primary-dark);
         }
         #scratchpad-textarea {
             width: 100%;
             flex-grow: 1;
             border: none;
-            padding: 15px;
-            font-size: 1em;
-            font-family: 'Poppins', sans-serif;
-            resize: none; /* Handled by parent container */
+            padding: 20px;
+            font-size: 1.05em;
+            font-family: 'Inter', sans-serif;
+            resize: none;
             outline: none;
             background-color: var(--scratchpad-bg);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.7;
             tab-size: 4;
             -moz-tab-size: 4;
-            white-space: pre-wrap; /* Ensure wrapping */
-            word-wrap: break-word; /* Break long words */
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         #scratchpad-textarea::placeholder {
             color: var(--light-text-color);
         }
 
+        /* --- Toast Notifications --- */
+        #toast-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1001; /* Above modals */
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        .toast {
+            background-color: rgba(45, 55, 72, 0.95); /* Dark grey with transparency */
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 0.95em;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: toastIn 0.5s forwards, toastOut 0.5s forwards 2.5s;
+            min-width: 250px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .toast.success {
+            background-color: rgba(76, 175, 80, 0.95); /* Green */
+        }
+        .toast.error {
+            background-color: rgba(244, 67, 54, 0.95); /* Red */
+        }
+        .toast.info {
+            background-color: rgba(33, 150, 243, 0.95); /* Blue */
+        }
+
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes toastOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
+
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .page-header, .test-header, .test-footer {
-                padding: 15px 20px;
+                padding: 15px 25px;
                 flex-direction: column;
                 text-align: center;
-                gap: 10px;
+                gap: 15px;
             }
             .page-header h1 {
-                font-size: 1.1em;
+                font-size: 1.2em;
             }
             .mode-toggle {
                 position: absolute;
                 top: 10px;
                 right: 10px;
-                padding: 5px;
-                font-size: 1.4em;
+                padding: 8px;
+                font-size: 1.5em;
             }
             #question-counter, #timer {
-                font-size: 1em;
-                padding: 8px 15px;
+                font-size: 1.1em;
+                padding: 10px 18px;
                 min-width: unset;
                 width: 100%;
             }
             .container {
-                margin: 15px auto;
-                border-radius: 8px;
+                margin: 20px auto;
+                border-radius: 12px;
             }
             .screen {
-                padding: 25px;
+                padding: 30px;
             }
             .screen h2 {
-                font-size: 1.8em;
-                margin-bottom: 20px;
-            }
-            .screen p, #instructions-screen ul li {
-                font-size: 0.95em;
-            }
-            #question-container {
-                font-size: 1.2em;
+                font-size: 2em;
                 margin-bottom: 25px;
             }
-            .option {
-                padding: 12px 18px;
+            .screen p, #instructions-screen ul li {
                 font-size: 1em;
+            }
+            #instructions-screen ul li::before {
+                font-size: 1.1em;
+                top: 0px;
+            }
+            #question-container {
+                font-size: 1.3em;
+                margin-bottom: 30px;
+            }
+            .option {
+                padding: 15px 20px;
+                font-size: 1.05em;
+            }
+            .option::before {
+                width: 18px;
+                height: 18px;
             }
             .btn {
                 width: 100%;
                 margin-bottom: 10px;
-                padding: 12px 25px;
+                padding: 14px 30px;
                 font-size: 1em;
             }
             .test-footer .left-controls, .test-footer .right-controls {
                 flex-direction: column;
                 width: 100%;
-                gap: 10px;
+                gap: 15px;
             }
-            /* .jump-to-question { Removed } */
             #question-palette {
-                grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
-                gap: 8px;
-                padding: 15px;
+                gap: 10px;
+                padding: 20px 25px;
+            }
+            .palette-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1em;
+                border-radius: 10px;
+            }
+            .palette-btn.flagged::after {
+                font-size: 0.7em;
+                top: 2px;
+                right: 2px;
+            }
+            #result-screen {
+                padding: 30px;
+            }
+            #result-summary {
+                padding: 25px;
+            }
+            .score-circle {
+                width: 160px;
+                height: 160px;
+                margin-bottom: 25px;
+            }
+            .score-circle span:first-child {
+                font-size: 3.5em;
+            }
+            .score-circle span:last-child {
+                font-size: 1.1em;
+            }
+            .score-details {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .modal-content {
+                padding: 35px 25px;
+            }
+            .modal-content h3 {
+                font-size: 1.8em;
+            }
+            .modal-content p {
+                font-size: 1.05em;
+            }
+            .modal-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .floating-tool-trigger {
+                width: 55px;
+                height: 55px;
+                font-size: 1.8em;
+                bottom: 20px;
+                right: 20px;
+            }
+            #calculator-tool, #scratchpad-tool {
+                width: 90%;
+                max-width: 340px;
+                height: auto;
+                max-height: 90vh;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            #calculator .display {
+                font-size: 3em;
+                padding: 20px;
+            }
+            #calculator .button {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding-top: 55px;
+            }
+            .screen {
+                padding: 20px;
+            }
+            .test-body {
+                padding: 20px;
+            }
+            .test-footer {
+                padding: 20px;
+            }
+            #question-palette {
+                padding: 15px 20px;
             }
             .palette-btn {
                 width: 45px;
                 height: 45px;
                 font-size: 0.9em;
             }
-            #result-screen {
-                padding: 25px;
-            }
-            #result-summary {
-                padding: 20px;
-            }
-            .score-circle {
-                width: 140px;
-                height: 140px;
-                margin-bottom: 20px;
-            }
-            .score-circle span:first-child {
-                font-size: 3em;
-            }
-            .score-circle span:last-child {
-                font-size: 1em;
-            }
-            .score-details {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .score-details div {
-                flex-basis: 100%;
-            }
-            .modal-content {
-                padding: 30px 20px;
-            }
-            .modal-content h3 {
-                font-size: 1.5em;
-            }
-            .modal-content p {
-                font-size: 1em;
-            }
-            .modal-buttons {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .floating-tool-trigger {
-                width: 48px;
-                height: 48px;
-                font-size: 1.5em;
-                bottom: 15px;
-                right: 15px;
-            }
-            #calculator-tool, #scratchpad-tool {
-                width: 95%; /* Make them wider on small screens */
-                max-width: 320px; /* Limit calculator width */
-                height: auto; /* Allow height to adjust */
-                max-height: 90vh; /* Prevent it from exceeding screen height */
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-            #calculator .display {
-                font-size: 2.5em; /* Adjust display font size for calculator */
-                padding: 15px;
-            }
-            #calculator .button {
-                font-size: 1.5em; /* Adjust button font size for calculator */
-            }
         }
 
-        @media (max-width: 480px) {
-            .page-header {
-                padding-top: 50px; /* Make space for absolute toggle */
+        /* Print specific styles */
+        @media print {
+            body > *:not(.container) {
+                display: none !important;
             }
+            .container {
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                max-width: none !important;
+                border-radius: 0 !important;
+                border: none !important;
+            }
+            #result-screen {
+                padding: 20px !important; /* Reduce padding for print */
+                text-align: left !important; /* Align text left for readability */
+            }
+            #result-summary {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 20px !important;
+                background-color: white !important; /* Ensure white background for print */
+            }
+            .score-circle {
+                box-shadow: none !important;
+                background: none !important;
+                color: var(--primary-color) !important; /* Keep score color consistent */
+                border: 2px solid var(--primary-color);
+            }
+            .score-circle span:first-child {
+                color: var(--primary-color) !important;
+            }
+            .score-details div {
+                box-shadow: none !important;
+                border: 1px solid var(--border-color) !important;
+                background-color: white !important;
+            }
+            .controls {
+                display: none !important; /* Hide controls in print */
+            }
+            #answer-review-container {
+                display: block !important; /* Ensure review answers are visible */
+                width: 100% !important;
+                margin-top: 0 !important;
+            }
+            .result-question {
+                box-shadow: none !important;
+                border: 1px solid var(--border-color) !important;
+                background-color: white !important;
+                padding: 15px !important;
+                margin-bottom: 15px !important;
+            }
+            .result-option {
+                margin-bottom: 5px !important;
+            }
+            .not-attempted-text {
+                margin-left: 0 !important;
+            }
+            /* Ensure dark mode styles don't interfere with print */
+            body.dark-mode .result-option.correct {
+                color: var(--secondary-color) !important;
+            }
+            body.dark-mode .result-option.incorrect.user-answer {
+                color: var(--danger-color) !important;
+            }
+            body.dark-mode .result-option.correct::before,
+            body.dark-mode .result-option.incorrect.user-answer::before {
+                color: inherit !important; /* Use inherited color for icons in print */
+            }
+            body.dark-mode #result-summary,
+            body.dark-mode .score-details div,
+            body.dark-mode .result-question {
+                background-color: white !important;
+                color: var(--text-color) !important; /* Ensure dark text on white background */
+            }
+            body.dark-mode .score-circle {
+                color: var(--primary-color) !important;
+            }
+            body.dark-mode .score-circle span:first-child {
+                color: var(--primary-color) !important;
+            }
+            body.dark-mode .score-details p:last-child {
+                color: var(--primary-color) !important;
+            }
+            body.dark-mode .score-details div:nth-child(3) p:last-child { color: var(--secondary-color) !important; }
+            body.dark-mode .score-details div:nth-child(4) p:last-child { color: var(--danger-color) !important; }
         }
     </style>
 </head>
@@ -1200,15 +1481,15 @@
 
             <div class="test-footer">
                 <div class="left-controls">
-                    <!-- Flag for Review Button - Displayed first -->
+                    <!-- Flag for Review Button -->
                     <button class="btn btn-flag" id="flag-button"><i class="fas fa-flag"></i> Flag for Review</button>
-                    <!-- Previous Button - Initially hidden on the first question -->
+                    <!-- Previous Button -->
                     <button class="btn btn-secondary hidden" id="prev-button"><i class="fas fa-arrow-left"></i> Previous</button>
                 </div>
                 <div class="right-controls">
-                    <!-- Next Button - Hidden on the last question -->
-                    <button class="btn btn-secondary" id="next-button">Next <i class="fas fa-arrow-right"></i></button>
-                    <!-- Submit Button - Initially hidden, shown only on the last question -->
+                    <!-- Next Button -->
+                    <button class="btn btn-primary" id="next-button">Next <i class="fas fa-arrow-right"></i></button>
+                    <!-- Submit Button -->
                     <button class="btn btn-submit hidden" id="submit-test-button">Submit Test <i class="fas fa-check"></i></button>
                 </div>
             </div>
@@ -1245,7 +1526,7 @@
             </div>
             <div class="controls">
                 <button class="btn btn-secondary" id="review-answers-button"><i class="fas fa-eye"></i> Review Answers</button>
-                <button class="btn btn-primary" id="download-pdf-button"><i class="fas fa-file-pdf"></i> Download PDF</button>
+                <button class="btn btn-primary" id="print-result-button"><i class="fas fa-print"></i> Print Result</button>
                 <button class="btn btn-secondary" id="retake-test-button"><i class="fas fa-redo"></i> Retake Test</button>
             </div>
 
@@ -1299,10 +1580,13 @@
         <p>Generating PDF...</p>
     </div>
 
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
     <div class="floating-tool-trigger" id="calculator-trigger" title="Open Calculator">
         <i class="fas fa-calculator"></i>
     </div>
-    <div class="floating-tool-trigger" id="scratchpad-trigger" style="bottom: 85px;" title="Open Scratchpad">
+    <div class="floating-tool-trigger" id="scratchpad-trigger" style="bottom: 95px;" title="Open Scratchpad">
         <i class="fas fa-pencil-alt"></i>
     </div>
 
@@ -1389,7 +1673,7 @@
     correctAnswer: 2
   },
   {
-    question: "'Biodiversity loss' refers to:",
+    question: "Biodiversity loss' refers to:",
     options: ["An increase in different species", "The reduction or disappearance of various species", "A change in weather patterns", "The growth of new forests"],
     correctAnswer: 1
   },
@@ -1880,6 +2164,7 @@
         let timerInterval;
         const totalTime = 60 * 60; // 60 minutes in seconds
         let timeLeft = totalTime;
+        const AUTO_SAVE_INTERVAL = 10 * 1000; // Auto-save every 10 seconds
 
         // DOM Elements
         const passwordScreen = document.getElementById('password-screen');
@@ -1891,14 +2176,13 @@
         const testScreen = document.getElementById('test-screen');
         const questionContainer = document.getElementById('question-container');
         const optionsContainer = document.getElementById('options-container');
-        const prevButton = document.getElementById('prev-button'); // Renamed from prevButton
-        const nextButton = document.getElementById('next-button'); // Renamed from nextButton
-        const submitTestButton = document.getElementById('submit-test-button'); // Renamed from submitTestButton
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const submitTestButton = document.getElementById('submit-test-button');
         const questionCounter = document.getElementById('question-counter');
         const timerDisplay = document.getElementById('timer');
         const progressBar = document.getElementById('progress-bar');
-        // const jumpSelect = document.getElementById('jump-select'); // Removed
-        const flagButton = document.getElementById('flag-button'); // Renamed from flagButton
+        const flagButton = document.getElementById('flag-button');
         const questionPalette = document.getElementById('question-palette');
         const resultScreen = document.getElementById('result-screen');
         const finalScoreDisplay = document.getElementById('final-score');
@@ -1907,7 +2191,7 @@
         const correctAnswersSummary = document.getElementById('correct-answers-summary');
         const incorrectAnswersSummary = document.getElementById('incorrect-answers-summary');
         const reviewAnswersButton = document.getElementById('review-answers-button');
-        const downloadPdfButton = document.getElementById('download-pdf-button');
+        const printResultButton = document.getElementById('print-result-button'); // Changed ID
         const retakeTestButton = document.getElementById('retake-test-button');
         const answerReviewContainer = document.getElementById('answer-review-container');
         const confirmSubmitModal = document.getElementById('confirm-submit-modal');
@@ -1922,6 +2206,8 @@
         const summarySubmitTest = document.getElementById('summary-submit-test');
         const loadingOverlay = document.getElementById('loading-overlay');
         const modeToggle = document.getElementById('mode-toggle');
+        const toastContainer = document.getElementById('toast-container');
+
 
         // Calculator elements
         const calculatorTrigger = document.getElementById('calculator-trigger');
@@ -1942,23 +2228,112 @@
             Climate change refers to long-term alterations in temperature, precipitation, wind patterns, and other elements of the Earth's climate system. Human activities, especially the burning of fossil fuels and deforestation, have accelerated these changes. The consequences of climate change include rising sea levels, more frequent extreme weather events, and biodiversity loss. Global efforts like the Paris Agreement aim to mitigate these effects through emission reductions and sustainable development.
         `;
 
-        // Initialize userAnswers array and populate jump select options
+        /**
+         * Displays a toast notification.
+         * @param {string} message The message to display.
+         * @param {string} type The type of toast (e.g., 'success', 'error', 'info').
+         * @param {number} duration The duration in milliseconds before the toast fades out.
+         */
+        function showToast(message, type = 'info', duration = 3000) {
+            const toast = document.createElement('div');
+            toast.classList.add('toast', type);
+            toast.innerHTML = `<i class="fas ${getToastIcon(type)}"></i> ${message}`;
+            toastContainer.appendChild(toast);
+
+            // Remove the toast after the duration + animation time
+            setTimeout(() => {
+                toast.style.animation = 'toastOut 0.5s forwards';
+                toast.addEventListener('animationend', () => {
+                    toast.remove();
+                });
+            }, duration);
+        }
+
+        /**
+         * Returns the appropriate Font Awesome icon class for a given toast type.
+         * @param {string} type The type of toast.
+         * @returns {string} The Font Awesome icon class.
+         */
+        function getToastIcon(type) {
+            switch (type) {
+                case 'success':
+                    return 'fa-check-circle';
+                case 'error':
+                    return 'fa-times-circle';
+                case 'info':
+                default:
+                    return 'fa-info-circle';
+            }
+        }
+
+
+        /**
+         * Initializes the quiz state, loading from local storage if available.
+         * This function now ensures a fresh start on every load/retake.
+         */
         function initializeQuiz() {
+            // Always reset to a fresh state on initialization
+            resetQuizState();
+
+            renderQuestion();
+            updatePalette();
+            updateTimerDisplay(); // Initial display of reset time
+            updateProgressBar();
+            timerDisplay.classList.remove('time-low');
+            updateNavigationButtons();
+            // Start auto-save for in-session persistence (will be cleared on next full reload)
+            startAutoSave();
+        }
+
+        /**
+         * Resets the quiz state to its initial values and clears local storage.
+         */
+        function resetQuizState() {
             userAnswers = new Array(quizData.length).fill(null);
             flaggedQuestions = new Set();
             currentQuestionIndex = 0;
-            timeLeft = totalTime; // Reset timer
-
-            // Removed populateJumpSelect();
-            renderQuestion();
-            updatePalette();
-            resetTimerDisplay();
-            progressBar.style.width = '0%'; // Reset progress bar
-            timerDisplay.classList.remove('time-low'); // Remove time-low class
-            updateNavigationButtons(); // Call to set initial button states
+            timeLeft = totalTime;
+            localStorage.removeItem('quizState'); // Clear saved quiz state
+            localStorage.removeItem('scratchpadContent'); // Clear saved scratchpad content
+            clearInterval(timerInterval); // Stop any running timer
+            stopAutoSave(); // Stop any running auto-save interval
+            resetTimerDisplay(); // Reset timer display to its initial value
         }
 
-        // Removed populateJumpSelect function
+        /**
+         * Saves the current quiz state to local storage.
+         */
+        function saveQuizState() {
+            const stateToSave = {
+                currentQuestionIndex: currentQuestionIndex,
+                userAnswers: userAnswers,
+                flaggedQuestions: Array.from(flaggedQuestions), // Convert Set to Array for JSON
+                timeLeft: timeLeft
+            };
+            localStorage.setItem('quizState', JSON.stringify(stateToSave));
+            // console.log('Quiz state saved.'); // For debugging, can be removed
+        }
+
+        /**
+         * Starts the periodic auto-save.
+         */
+        function startAutoSave() {
+            if (window.autoSaveInterval) {
+                clearInterval(window.autoSaveInterval); // Clear any existing interval
+            }
+            window.autoSaveInterval = setInterval(saveQuizState, AUTO_SAVE_INTERVAL);
+        }
+
+        /**
+         * Stops the periodic auto-save.
+         */
+        function stopAutoSave() {
+            if (window.autoSaveInterval) {
+                clearInterval(window.autoSaveInterval);
+                window.autoSaveInterval = null;
+            }
+        }
+
 
         function renderQuestion() {
             const question = quizData[currentQuestionIndex];
@@ -1988,7 +2363,6 @@
             });
 
             questionCounter.textContent = `Question: ${currentQuestionIndex + 1} / ${quizData.length}`;
-            // Removed jumpSelect.value = currentQuestionIndex;
             updateFlagButton();
             updatePalette();
             updateNavigationButtons(); // Update button visibility after rendering question
@@ -1998,6 +2372,7 @@
             userAnswers[currentQuestionIndex] = selectedIndex;
             renderQuestion(); // Re-render to show selection
             updatePalette();
+            saveQuizState(); // Save state immediately after an answer is selected
         }
 
         function navigateQuestions(direction) {
@@ -2007,9 +2382,8 @@
                 currentQuestionIndex--;
             }
             renderQuestion();
+            saveQuizState(); // Save state after navigation
         }
-
-        // Removed jumpToQuestion function
 
         function toggleFlag() {
             if (flaggedQuestions.has(currentQuestionIndex)) {
@@ -2019,6 +2393,7 @@
             }
             updateFlagButton();
             updatePalette();
+            saveQuizState(); // Save state after flagging
         }
 
         function updateFlagButton() {
@@ -2057,19 +2432,23 @@
         }
 
         function startTimer() {
+            stopAutoSave(); // Stop periodic auto-save when timer interval takes over
             timerInterval = setInterval(() => {
                 timeLeft--;
                 updateTimerDisplay();
                 updateProgressBar();
+                saveQuizState(); // Save state with updated time
 
                 if (timeLeft <= 300 && !timerDisplay.classList.contains('time-low')) { // 5 minutes warning
                     timerDisplay.classList.add('time-low');
+                    showToast('Less than 5 minutes remaining!', 'warning');
                 }
 
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     timerDisplay.textContent = "Time's Up!";
                     handleSubmitTest(true); // Automatically submit when time runs out
+                    showToast('Time is up! Test submitted automatically.', 'info');
                 }
             }, 1000);
         }
@@ -2137,6 +2516,7 @@
             testScreen.classList.add('hidden');
             resultScreen.classList.remove('hidden');
             clearInterval(timerInterval); // Stop the timer
+            stopAutoSave(); // Stop auto-saving once test is submitted
 
             finalScoreDisplay.textContent = results.correct;
             totalQuestionsSummary.textContent = results.total;
@@ -2144,8 +2524,9 @@
             correctAnswersSummary.textContent = results.correct;
             incorrectAnswersSummary.textContent = results.incorrect;
 
-            // Save results to local storage for retake/review persistence if needed
-            localStorage.setItem('lastQuizResults', JSON.stringify({ userAnswers, flaggedQuestions, results }));
+            // Clear quiz state from local storage after submission
+            localStorage.removeItem('quizState');
+            localStorage.removeItem('scratchpadContent'); // Clear scratchpad too
         }
 
         function reviewAnswers() {
@@ -2163,18 +2544,20 @@
                 question.options.forEach((option, optionIndex) => {
                     const optionP = document.createElement('p');
                     optionP.classList.add('result-option');
-                    optionP.textContent = `${String.fromCharCode(65 + optionIndex)}. ${option}`; // A, B, C, D
+                    // Create a span for the text content to apply color more easily
+                    const optionTextSpan = document.createElement('span');
+                    optionTextSpan.textContent = `${String.fromCharCode(65 + optionIndex)}. ${option}`; // A, B, C, D
+                    optionP.appendChild(optionTextSpan);
 
+                    // Apply 'correct' class to the correct answer option
                     if (optionIndex === question.correctAnswer) {
                         optionP.classList.add('correct');
-                        optionP.textContent += ' (Correct Answer)';
                     }
 
+                    // Apply 'user-answer' and 'incorrect' classes if applicable
                     if (userAnswers[index] === optionIndex) {
                         optionP.classList.add('user-answer');
-                        if (userAnswers[index] === question.correctAnswer) {
-                            optionP.classList.add('correct');
-                        } else {
+                        if (userAnswers[index] !== question.correctAnswer) {
                             optionP.classList.add('incorrect');
                         }
                     }
@@ -2191,42 +2574,43 @@
                 answerReviewContainer.appendChild(qDiv);
             });
             reviewAnswersButton.classList.add('hidden'); // Hide review button after showing
-            downloadPdfButton.classList.add('hidden'); // Hide download button as well for clarity
+            printResultButton.classList.add('hidden'); // Hide print button as well for clarity
             // Scroll to the review section
             answerReviewContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
 
-        function downloadQuizAsPdf() {
-            loadingOverlay.classList.remove('hidden'); // Show loading spinner
-            const element = document.getElementById('result-screen');
-
-            // Temporarily hide buttons and other non-content elements for PDF generation
-            const controls = element.querySelector('.controls');
-            if (controls) controls.classList.add('hidden');
-            // Show review container if not already visible
+        function printResult() {
+            // First, ensure the review answers are displayed
             if (answerReviewContainer.classList.contains('hidden')) {
-                reviewAnswers(); // Generate review content if not already
+                reviewAnswers();
             }
 
+            // Temporarily hide elements not meant for printing
+            const header = document.querySelector('.page-header');
+            const footer = document.querySelector('.page-footer');
+            const toolTriggers = document.querySelectorAll('.floating-tool-trigger');
+            const controls = document.querySelector('#result-screen .controls');
 
-            // Scroll to top of results before PDF to capture full content
-            resultScreen.scrollTo(0, 0);
+            header.classList.add('hidden');
+            footer.classList.add('hidden');
+            toolTriggers.forEach(el => el.classList.add('hidden'));
+            if (controls) controls.classList.add('hidden');
 
+            // Trigger browser print dialog
+            window.print();
 
-            const opt = {
-                margin: 0.5,
-                filename: 'IBA_Mock_Test_Results.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-            };
-
-            html2pdf().set(opt).from(element).save().finally(() => {
-                loadingOverlay.classList.add('hidden'); // Hide loading spinner
+            // Restore hidden elements after printing (or print dialog is closed)
+            // Use a timeout to allow the print dialog to open and close
+            setTimeout(() => {
+                header.classList.remove('hidden');
+                footer.classList.remove('hidden');
+                toolTriggers.forEach(el => el.classList.remove('hidden'));
                 if (controls) controls.classList.remove('hidden');
-                // Don't hide answerReviewContainer, keep it visible for user
-            });
+                // Re-hide review answers button if it was hidden before print
+                reviewAnswersButton.classList.remove('hidden');
+                printResultButton.classList.remove('hidden');
+            }, 500); // A small delay to ensure print dialog opens
         }
 
 
@@ -2235,9 +2619,9 @@
             if (passwordInput.value === PASSWORD) {
                 passwordScreen.classList.add('hidden');
                 instructionsScreen.classList.remove('hidden');
+                showToast('Password correct! Welcome to the test.', 'success');
             } else {
-                // Replaced alert with custom modal message if needed, or simple console log for development
-                console.error('Incorrect password. Please try again.');
+                showToast('Incorrect password. Please try again.', 'error');
                 passwordInput.value = '';
             }
         });
@@ -2253,14 +2637,14 @@
         beginTestButton.addEventListener('click', () => {
             instructionsScreen.classList.add('hidden');
             testScreen.classList.remove('hidden');
-            initializeQuiz();
+            initializeQuiz(); // Call initializeQuiz to set up a fresh test
             startTimer();
             loadScratchpadContent(); // Load saved scratchpad content
+            showToast('Test started! Good luck.', 'info');
         });
 
         prevButton.addEventListener('click', () => navigateQuestions('prev'));
         nextButton.addEventListener('click', () => navigateQuestions('next'));
-        // Removed jumpSelect.addEventListener('change', jumpToQuestion);
         flagButton.addEventListener('click', toggleFlag);
 
 
@@ -2310,23 +2694,25 @@
             showResultScreen(results);
 
             if (isTimeUp) {
-                // Replaced alert with custom modal message if needed, or simple console log for development
-                console.log("Time's up! Your test has been automatically submitted.");
+                showToast("Time's up! Test submitted automatically.", 'info');
+            } else {
+                showToast('Test submitted successfully!', 'success');
             }
         }
 
 
         reviewAnswersButton.addEventListener('click', reviewAnswers);
-        downloadPdfButton.addEventListener('click', downloadQuizAsPdf);
+        printResultButton.addEventListener('click', printResult); // Changed event listener
 
         retakeTestButton.addEventListener('click', () => {
             resultScreen.classList.add('hidden');
             passwordScreen.classList.remove('hidden');
             answerReviewContainer.classList.add('hidden'); // Hide review details on retake
             reviewAnswersButton.classList.remove('hidden'); // Show review button again
-            downloadPdfButton.classList.remove('hidden'); // Show download button again
+            printResultButton.classList.remove('hidden'); // Show print button again
             passwordInput.value = ''; // Clear password field
-            initializeQuiz(); // Re-initialize all quiz state
+            initializeQuiz(); // Re-initialize all quiz state (will now always be fresh)
+            showToast('Test reset. Ready to retake!', 'info');
         });
 
         // Dark mode toggle
@@ -2345,6 +2731,8 @@
         });
 
         // Apply dark mode preference on load
+        // This will now always start in the default (light) mode or apply dark mode if previously set,
+        // but the quiz state itself will always be fresh due to initializeQuiz().
         if (localStorage.getItem('darkMode') === 'enabled') {
             document.body.classList.add('dark-mode');
             modeToggle.querySelector('i').classList.remove('fa-moon');
@@ -2406,7 +2794,7 @@
                 calculator.firstOperand = inputValue;
             } else if (operator) {
                 const result = performCalculation[operator](firstOperand, inputValue);
-                calculator.displayValue = String(parseFloat(result.toFixed(7))); // Fix for floating point precision
+                calculator.displayValue = String(parseFloat(result.toFixed(7)));
                 calculator.firstOperand = parseFloat(calculator.displayValue);
             }
 
@@ -2432,7 +2820,7 @@
                 }
 
                 if (target.classList.contains('operator')) {
-                    if (target.value === '=') { // Handle equals button
+                    if (target.value === '=') {
                         calculateResultCalc();
                     } else {
                         handleOperator(target.textContent);
@@ -2452,8 +2840,8 @@
 
                 if (target.classList.contains('percentage')) {
                     calculator.displayValue = String(parseFloat(calculator.displayValue) / 100);
-                    calculator.firstOperand = null; // Reset first operand after percentage
-                    calculator.waitingForSecondOperand = false; // Ready for next number input
+                    calculator.firstOperand = null;
+                    calculator.waitingForSecondOperand = false;
                     updateDisplay();
                     return;
                 }
@@ -2483,7 +2871,7 @@
             }
 
             const result = performCalculation[calculator.operator](calculator.firstOperand, inputValue);
-            calculator.displayValue = String(parseFloat(result.toFixed(7))); // Fix for floating point precision
+            calculator.displayValue = String(parseFloat(result.toFixed(7)));
             calculator.firstOperand = null;
             calculator.operator = null;
             calculator.waitingForSecondOperand = false;
@@ -2507,7 +2895,6 @@
         // Also save when the tool is closed
         closeToolButtons.forEach(button => {
             button.addEventListener('click', (event) => {
-                // Use currentTarget to ensure we're getting the data-tool from the button itself
                 const toolType = event.currentTarget.dataset.tool;
                 if (toolType === 'scratchpad') {
                     saveScratchpadContent();
@@ -2528,29 +2915,24 @@
             function dragMouseDown(e) {
                 e = e || window.event;
                 e.preventDefault();
-                // get the mouse cursor position at startup:
                 pos3 = e.clientX;
                 pos4 = e.clientY;
                 document.onmouseup = closeDragElement;
-                // call a function whenever the cursor moves:
                 document.onmousemove = elementDrag;
             }
 
             function elementDrag(e) {
                 e = e || window.event;
                 e.preventDefault();
-                // calculate the new cursor position:
                 pos1 = pos3 - e.clientX;
                 pos2 = pos4 - e.clientY;
                 pos3 = e.clientX;
                 pos4 = e.clientY;
-                // set the element's new position:
                 element.style.top = (element.offsetTop - pos2) + "px";
                 element.style.left = (element.offsetLeft - pos1) + "px";
             }
 
             function closeDragElement() {
-                // stop moving when mouse button is released:
                 document.onmouseup = null;
                 document.onmousemove = null;
             }
@@ -2563,20 +2945,23 @@
         // Toggle visibility of floating tools
         calculatorTrigger.addEventListener('click', () => {
             calculatorTool.classList.toggle('hidden');
-            // Ensure scratchpad is hidden if calculator is opened
             scratchpadTool.classList.add('hidden');
         });
 
         scratchpadTrigger.addEventListener('click', () => {
             scratchpadTool.classList.toggle('hidden');
-            // Ensure calculator is hidden if scratchpad is opened
             calculatorTool.classList.add('hidden');
         });
 
         // Initialize quiz on page load
         document.addEventListener('DOMContentLoaded', () => {
-            // No need to call initializeQuiz here, it's called on begin-test-button click
-            // But ensure the initial state of buttons is correct if starting directly on test screen (not the case here)
+            initializeQuiz(); // Load quiz state on DOMContentLoaded (will now always be fresh)
+        });
+
+        // Save quiz state before the user leaves or reloads the page
+        window.addEventListener('beforeunload', () => {
+            saveQuizState();
+            saveScratchpadContent();
         });
 
     </script>
