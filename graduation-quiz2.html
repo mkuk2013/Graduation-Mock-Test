@@ -244,6 +244,23 @@
         .toggle-password:hover {
             color: var(--text-color);
         }
+        .password-notice { /* New style for the notice */
+            font-size: 0.95em;
+            color: var(--text-color);
+            margin-top: -15px; /* Adjust margin to place it closer to the input */
+            margin-bottom: 25px; /* Space before the button */
+            line-height: 1.5;
+            max-width: 450px;
+            text-align: center;
+        }
+        .password-notice a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .password-notice a:hover {
+            text-decoration: underline;
+        }
 
         /* --- Instructions Screen --- */
         #instructions-screen {
@@ -1473,6 +1490,11 @@
                     <i class="fas fa-eye"></i>
                 </span>
             </div>
+            <!-- New notice added here -->
+            <p class="password-notice">
+                🔒 NOTICE: All tests are password protected. For password, please contact on WhatsApp: 
+                <a href="https://wa.me/923480358640" target="_blank" rel="noopener noreferrer">+92 348 0358640</a>
+            </p>
             <button class="btn btn-primary" id="start-button">Start Test</button>
         </section>
 
