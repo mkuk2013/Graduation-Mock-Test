@@ -154,7 +154,7 @@
             margin-top: auto;
             background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
             color: white;
-            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 -4px 15px (0, 0, 0, 0.15);
             text-align: center;
             z-index: 100;
         }
@@ -261,17 +261,17 @@
             margin-bottom: 20px;
             text-align: center;
             font-weight: 800;
-            position: relative; /* Changed to relative to position badge within it */
+            position: relative;
             padding-bottom: 20px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            display: flex; /* Use flexbox to align text and badge */
-            justify-content: center; /* Center content horizontally */
-            align-items: center; /* Center content vertically */
-            gap: 15px; /* Space between text and badge */
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            gap: 15px; 
+            flex-wrap: wrap; 
         }
 
         .section-heading::after {
@@ -306,7 +306,7 @@
         .mock-tests-section, .past-papers-section {
             width: 100%;
             max-width: 1200px;
-            position: relative; /* Added for positioning the badge relative to the section */
+            position: relative;
         }
 
         /* --- Card Styles --- */
@@ -383,7 +383,7 @@
         }
 
         .mock-test-card:hover .card-icon-wrapper::after,
-        .past-paper-card:hover .card-icon-wrapper::after {
+        .past-paper-card:hover .card-icon-wrapper {
             opacity: 1;
         }
 
@@ -488,7 +488,7 @@
         .past-papers-section {
             width: 100%;
             max-width: 1200px;
-            position: relative; /* Ensure this is relative for absolute positioning of badge */
+            position: relative;
         }
 
         .past-paper-card .year-badge {
@@ -555,33 +555,44 @@
             z-index: 10;
             animation: newBadgePulse 2s infinite ease-in-out;
         }
-
-        /* --- Recently Added Badge (for Past Papers) --- */
-        .recently-added-badge {
-            background: linear-gradient(135deg, #FF0000, #CC0000); /* Solid Red gradient */
-            color: white; /* Explicitly set text color to white */
-            padding: 6px 12px; /* Smaller padding */
-            border-radius: 16px; /* Slightly smaller border-radius */
-            font-size: 0.8em; /* Smaller font size */
-            font-weight: 600;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Adjusted shadow */
-            white-space: nowrap; /* Prevent text wrapping */
-            animation: none; /* Removed animation */
-            display: inline-flex; /* Make it inline with the text */
-            align-items: center; /* Vertically align content */
-            justify-content: center; /* Horizontally align content */
-            margin-left: 15px; /* Add some space from the heading text */
-            vertical-align: middle; /* Align with the middle of the text */
-        }
-
-
+        
         @keyframes newBadgePulse {
             0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4); }
             50% { transform: scale(1.05); box-shadow: 0 6px 16px rgba(239, 68, 68, 0.6); }
         }
 
-        /* No specific animation for recently-added-badge now, as per request */
-
+        /* --- Recently Added Badge (Even Smaller and More Professional) --- */
+        .recently-added-badge {
+            background: linear-gradient(135deg, var(--danger-color), #DC2626);
+            color: white;
+            padding: 3px 8px; /* Further reduced padding */
+            border-radius: 9999px; /* Pill shape */
+            font-size: 0.6em; /* Further reduced font size */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 1px 4px rgba(239, 68, 68, 0.2); /* Softer, more professional shadow */
+            display: inline-flex;
+            align-items: center;
+            gap: 3px; /* Reduced gap between icon and text */
+            animation: badge-pulse 2s infinite ease-in-out;
+            margin-left: 10px; /* Added margin to separate from the heading text */
+            -webkit-text-fill-color: white;
+            background-clip: initial;
+            white-space: nowrap; /* Prevents text from wrapping on small screens */
+        }
+        
+        /* Badge Pulse Animation */
+        @keyframes badge-pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 1px 4px rgba(239, 68, 68, 0.2);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+            }
+        }
 
         /* --- Responsive Design --- */
         @media (max-width: 1024px) {
@@ -591,9 +602,6 @@
             }
             .section-heading {
                 font-size: 2.6em;
-            }
-            .recently-added-badge {
-                /* Adjust positioning for smaller desktop screens if needed, but inline-flex should handle it */
             }
         }
 
@@ -624,17 +632,17 @@
             .section-heading {
                 font-size: 2.2em;
                 padding-bottom: 16px;
-                flex-direction: column; /* Stack heading and badge on small screens */
-                gap: 5px; /* Smaller gap for stacked elements */
+                flex-direction: column;
+                gap: 10px;
             }
             .section-heading::after {
-                width: 80px; /* Adjust line width for smaller screens */
+                width: 80px;
             }
             .recently-added-badge {
-                margin-left: 0; /* Remove left margin when stacked */
-                margin-top: 5px; /* Add some top margin when stacked */
-                font-size: 0.7em; /* Even smaller font size for mobile */
-                padding: 5px 10px; /* Even smaller padding for mobile */
+                margin-left: 0;
+                margin-top: 5px;
+                font-size: 0.6em; /* Adjusted for better mobile look */
+                padding: 3px 6px;
             }
             .mock-test-grid, .past-papers-grid {
                 grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -699,8 +707,8 @@
                 font-size: 0.95em;
             }
             .recently-added-badge {
-                font-size: 0.65em; /* Even smaller for very small screens */
-                padding: 4px 8px; /* Even smaller padding */
+                font-size: 0.55em;
+                padding: 2px 5px;
             }
         }
     </style>
@@ -799,7 +807,7 @@
         <section class="past-papers-section">
             <h2 class="section-heading">
                 Past Papers Collection
-                <div class="recently-added-badge">Recently Added</div>
+                <div class="recently-added-badge"><i class="fas fa-fire"></i> Recently Added</div>
             </h2>
 
             <div class="past-papers-grid">
